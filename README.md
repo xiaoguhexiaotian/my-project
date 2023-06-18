@@ -1,24 +1,29 @@
-# my-components-project
+# my-blog
 
-## Project setup
+## 项目初始化
+
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### 项目启动
+
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### 项目打包发布
+
 ```
 yarn build
 ```
 
-### Lints and fixes files
+### 检查和修复文件
+
 ```
 yarn lint
 ```
 
-### Customize configuration
+### 自定义配置
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
