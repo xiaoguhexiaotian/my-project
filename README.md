@@ -3,27 +3,24 @@
 ## 项目初始化
 
 ```
-yarn install
+pnpm install
 ```
 
 ### 项目启动
 
 ```
-yarn serve
+npm run dev
 ```
 
 ### 项目打包发布
 
 ```
-yarn build
+pnpm build
 ```
 
 ### 检查和修复文件
 
 ```
-yarn lint
+pnpm lint
 ```
 
-### 自定义配置
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
