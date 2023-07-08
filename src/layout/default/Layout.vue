@@ -2,7 +2,7 @@
   <Layout style="min-height: 100vh">
     <Layout.Sider v-model:collapsed="collapsed" collapsible></Layout.Sider>
     <Layout>
-      <Layout.Header style="background-color: gray"> <LayoutHeader /></Layout.Header>
+      <Layout.Header style="background-color: gray; padding: 0"> <LayoutHeader /></Layout.Header>
       <Layout.Content>内容</Layout.Content>
       <Layout.Footer>底部</Layout.Footer>
     </Layout>
