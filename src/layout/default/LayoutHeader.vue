@@ -19,7 +19,11 @@
     <template #body>
       <h3 :class="`${prefixCls}-menu-type-title`">导航栏模式</h3>
       <div :class="`${prefixCls}-menu-type-picker`">
-        <div v-for="i in layouts" :class="`${prefixCls}-menu-type-picker-${i.type}`">
+        <div
+          v-for="i in layouts"
+          :class="`${prefixCls}-menu-type-picker-${i.type}`"
+          @click="settingMenuType(i.type)"
+        >
           <div class="box"></div>
         </div>
       </div>
@@ -30,11 +34,15 @@
   </MenuSettingDrawer>
 </template>
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useDesign } from '/@/hooks/useDesign'
 import { Button } from 'ant-design-vue'
 import { SettingOutlined } from '@ant-design/icons-vue'
 import MenuSettingDrawer from '/@/components/Drawer/index.vue'
-import { ref } from 'vue'
+import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
+import { useAppStore } from '/@/stores/app'
+
+const appStore = useAppStore()
 
 const { prefixCls } = useDesign('header')
 
@@ -45,7 +53,15 @@ const openSetting = () => {
 }
 const layouts = [{ type: 'left-top' }, { type: 'top-left' }, { type: 'top' }]
 
-console.log(layouts)
+const { menuSetting } = appStore.getProjectConfig
+
+const settingMenuType = (type) => {
+  menuSetting.type =
+    { 'left-top': MenuTypeEnum.LEFT_TOP, 'top-left': MenuTypeEnum.TOP_LEFT }[type] ||
+    MenuTypeEnum.TOP
+  appStore.setProjectConfig(menuSetting)
+  console.log(menuSetting.type)
+}
 </script>
 
 <style scoped lang="less">

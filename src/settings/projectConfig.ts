@@ -1,5 +1,26 @@
+import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
+
+export interface ProjectConfig {
+  menuSetting: {
+    fixed: boolean
+    collapsed: boolean
+    collapsedShowTitle: boolean
+    canDrag: boolean
+    show: boolean
+    hidden: boolean
+    menuWidth: number
+    type: MenuTypeEnum
+    split: boolean
+    topMenuAlign: 'left' | 'center' | 'right'
+    accordion: boolean
+    closeMixSidebarOnChange: boolean
+    mixSideFixed: boolean
+    isHover: boolean
+  }
+}
+
 // ! 改动后需要清空浏览器缓存
-const setting = {
+const setting: ProjectConfig = {
   // 菜单配置
   menuSetting: {
     // 是否固定住左侧菜单
@@ -19,8 +40,8 @@ const setting = {
     menuWidth: 160,
     // // 菜单模式
     // mode: MenuModeEnum.INLINE,
-    // // 菜单类型
-    // type: MenuTypeEnum.SIDEBAR,
+    // 菜单类型
+    type: MenuTypeEnum.LEFT_TOP,
     // // 菜单主题
     // theme: ThemeEnum.DARK,
     // 分割菜单
