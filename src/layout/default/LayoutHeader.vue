@@ -1,11 +1,16 @@
 <template>
   <div :class="`${prefixCls} px-5px`">
-    <span>头部</span>
-    <Button type="text" shape="circle" @click="openSetting">
-      <template #icon>
-        <SettingOutlined />
-      </template>
-    </Button>
+    <div :style="headerStyle">
+      <span v-if="menuSetting.type != MenuTypeEnum.LEFT_TOP" :class="`${prefixCls}-left`">
+        非LEFT_Top模式下header左侧
+      </span>
+      <span>header</span>
+      <Button type="text" shape="circle" @click="openSetting">
+        <template #icon>
+          <SettingOutlined />
+        </template>
+      </Button>
+    </div>
   </div>
   <MenuSettingDrawer
     :class-name="'menu-setting-drawer'"
@@ -29,12 +34,12 @@
       </div>
     </template>
     <template #footer>
-      <Button type="primary" block>重置</Button>
+      <Button type="primary" block @click="reset">重置</Button>
     </template>
   </MenuSettingDrawer>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useDesign } from '/@/hooks/useDesign'
 import { Button } from 'ant-design-vue'
 import { SettingOutlined } from '@ant-design/icons-vue'
@@ -55,12 +60,26 @@ const layouts = [{ type: 'left-top' }, { type: 'top-left' }, { type: 'top' }]
 
 const { menuSetting } = appStore.getProjectConfig
 
+const headerStyle = computed(() => {
+  return {
+    height: menuSetting.type == MenuTypeEnum.TOP ? '100%' : ''
+  }
+})
+/**
+ * 设置布局类型
+ * @param type 布局类型
+ */
 const settingMenuType = (type) => {
   menuSetting.type =
     { 'left-top': MenuTypeEnum.LEFT_TOP, 'top-left': MenuTypeEnum.TOP_LEFT }[type] ||
     MenuTypeEnum.TOP
   appStore.setProjectConfig(menuSetting)
-  console.log(menuSetting.type)
+}
+/**
+ * 重置
+ */
+const reset = () => {
+  appStore.setProjectConfig(Object.assign(menuSetting, { type: MenuTypeEnum.TOP }))
 }
 </script>
 
@@ -70,7 +89,7 @@ const settingMenuType = (type) => {
 .@{prefix-cls} {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 
   &-menu-type {
     &-picker {
@@ -160,6 +179,10 @@ const settingMenuType = (type) => {
       font-weight: 500;
       font-size: 16px;
     }
+  }
+  &-left {
+    position: absolute;
+    left: 5px;
   }
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <Layout style="min-height: 100vh">
+    <!-- 左侧菜单封装公用组件使用 -->
     <Layout.Sider
       v-model:collapsed="collapsed"
       collapsible
@@ -7,8 +8,17 @@
     />
     <Layout>
       <Layout.Header style="background-color: gray; padding: 0"> <LayoutHeader /></Layout.Header>
-      <Layout.Content>内容</Layout.Content>
-      <Layout.Footer>底部</Layout.Footer>
+      <Layout>
+        <Layout.Sider
+          v-model:collapsed="collapsed"
+          collapsible
+          v-if="menuSetting.type == MenuTypeEnum.TOP_LEFT"
+        />
+        <Layout>
+          <Layout.Content> 内容 </Layout.Content>
+          <Layout.Footer>底部</Layout.Footer>
+        </Layout>
+      </Layout>
     </Layout>
   </Layout>
 </template>
