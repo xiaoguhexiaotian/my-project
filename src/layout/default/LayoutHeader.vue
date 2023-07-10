@@ -4,7 +4,7 @@
       <span v-if="menuSetting.type != MenuTypeEnum.LEFT_TOP" :class="`${prefixCls}-left`">
         非LEFT_Top模式下header左侧
       </span>
-      <span>header</span>
+      <span @click="jump">header</span>
       <Button type="text" shape="circle" @click="openSetting">
         <template #icon>
           <SettingOutlined />
@@ -46,6 +46,7 @@ import { SettingOutlined } from '@ant-design/icons-vue'
 import MenuSettingDrawer from '/@/components/Drawer/index.vue'
 import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
 import { useAppStore } from '/@/stores/app'
+import router from '/@/router'
 
 const appStore = useAppStore()
 
@@ -80,6 +81,12 @@ const settingMenuType = (type) => {
  */
 const reset = () => {
   // appStore.setProjectConfig(Object.assign(menuSetting, { type: MenuTypeEnum.TOP }))
+}
+/**
+ * 路由跳转
+ */
+const jump = () => {
+  router.push({ path: 'dbTabs' })
 }
 </script>
 

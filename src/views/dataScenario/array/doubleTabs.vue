@@ -1,4 +1,15 @@
+<template>
+  <div v-for="i in list">
+    <div :id="activeKey[i.name]">
+      <span v-for="k in i.types" style="margin-right: 30px" @click="test(k.type, i.name)">{{
+        k.name
+      }}</span>
+    </div>
+  </div>
+</template>
 <script lang="ts" setup>
+import router from '/@/router'
+
 let list = [
   {
     name: 'test1',
@@ -37,18 +48,9 @@ function convertListToObject(list) {
 }
 const test = (v, v2) => {
   activeKey[v2] = v
-  console.log(v, activeKey)
+  router.push({ path: '/' })
 }
+console.log('测试缓存1')
 </script>
-
-<template>
-  <div v-for="i in list">
-    <div :id="activeKey[i.name]">
-      <span v-for="k in i.types" style="margin-right: 30px" @click="test(k.type, i.name)">{{
-        k.name
-      }}</span>
-    </div>
-  </div>
-</template>
 
 <style lang="less" scoped></style>

@@ -15,7 +15,9 @@
           v-if="menuSetting.type == MenuTypeEnum.TOP_LEFT"
         />
         <Layout>
-          <Layout.Content> 内容 </Layout.Content>
+          <Layout.Content>
+            <slot name="body"></slot>
+          </Layout.Content>
           <Layout.Footer>底部</Layout.Footer>
         </Layout>
       </Layout>
