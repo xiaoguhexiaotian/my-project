@@ -7,7 +7,7 @@
       v-if="menuSetting.type == MenuTypeEnum.LEFT_TOP"
     />
     <Layout>
-      <Layout.Header style="background-color: gray; padding: 0"> <LayoutHeader /></Layout.Header>
+      <Layout.Header style="background-color: #edeef0; padding: 0"> <LayoutHeader /></Layout.Header>
       <Layout>
         <Layout.Sider
           v-model:collapsed="collapsed"

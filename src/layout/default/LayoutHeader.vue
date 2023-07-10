@@ -79,7 +79,7 @@ const settingMenuType = (type) => {
  * 重置
  */
 const reset = () => {
-  appStore.setProjectConfig(Object.assign(menuSetting, { type: MenuTypeEnum.TOP }))
+  // appStore.setProjectConfig(Object.assign(menuSetting, { type: MenuTypeEnum.TOP }))
 }
 </script>
 
@@ -90,7 +90,10 @@ const reset = () => {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
+  background-image: url('../../assets/images/header.webp');
+  .ant-btn-text {
+    color: #d8e5f8;
+  }
   &-menu-type {
     &-picker {
       display: flex;
