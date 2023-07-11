@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import doubleTabs from '/@/views/dataScenario/array/doubleTabs.vue'
-import HomeView from '/@/layout/page/HomeView.vue'
+import HomeView from '/@/views/dashboard/index.vue'
 
 const routes = [
   {
