@@ -1,33 +1,45 @@
 <template>
-  <Tabs v-model:activeKey="activeKey" type="editable-card" @edit="onEdit" :hideAdd="true">
-    <TabPane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable">
-      <!-- {{ pane.content }} -->
-    </TabPane>
+  <Tabs
+    v-model:activeKey="activeKey"
+    type="editable-card"
+    @change="handleChange"
+    @edit="closeTab"
+    :hideAdd="true"
+  >
+    <TabPane v-for="i in tabList" :key="i.fullPath" :tab="i.meta.title" />
   </Tabs>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Tabs, TabPane } from 'ant-design-vue'
-import { useTabsStore } from '/@/stores/tab'
+import { usetabStore } from '/@/stores/tab'
+import { listenerRouteChange } from '/@/hooks/sys/routeChange'
+import type { RouteLocationNormalized } from 'vue-router'
+import router from '/@/router'
 
-const tabsStore = useTabsStore()
-console.log(tabsStore)
+const tabStore = usetabStore()
 
-const panes = ref<{ title: string; content: string; key: string; closable?: boolean }[]>([
-  { title: 'Tab 1', content: 'Content of Tab 1', key: '1' },
-  { title: 'Tab 2', content: 'Content of Tab 2', key: '2' },
-  { title: 'Tab 3', content: 'Content of Tab 3', key: '3' }
-])
+listenerRouteChange((route: RouteLocationNormalized) => {
+  activeKey.value = route.fullPath
+  tabStore.addTab(route)
+})
 
-const activeKey = ref(panes.value[0].key)
+// 获取需要展示的tab列表
+const tabList = computed(() => {
+  return tabStore.getTabList.filter((item) => !item.meta?.hideTab)
+})
 
-const newTabIndex = ref(0)
+const activeKey = ref()
 
-const remove = (targetKey: string) => {
-  console.log(targetKey)
+// 点击切换
+const handleChange = (val) => {
+  activeKey.value = val
+  router.push({ path: val })
+  console.log(val)
 }
 
-const onEdit = (targetKey: string | MouseEvent, action: string) => {
-  console.log(targetKey, action)
+// 点击关闭
+const closeTab = (targetKey: string | MouseEvent) => {
+  console.log(targetKey)
 }
 </script>

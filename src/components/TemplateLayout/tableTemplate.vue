@@ -53,7 +53,7 @@ let contentMaxHeight = computed<string>(() => {
     70
   }px`
 })
-console.log(contentMaxHeight)
+// console.log(contentMaxHeight)
 </script>
 
 <style lang="less" scoped>
