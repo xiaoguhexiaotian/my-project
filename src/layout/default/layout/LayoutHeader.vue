@@ -91,7 +91,7 @@ const reset = () => {
  * 路由跳转
  */
 const jump = () => {
-  router.push({ path: 'dbTabs' })
+  router.push({ path: '/dataScenario/array/doubleTabs' })
 }
 </script>
 
