@@ -7,7 +7,9 @@
       v-if="menuSetting.type == MenuTypeEnum.LEFT_TOP"
     />
     <Layout>
-      <Layout.Header style="background-color: #edeef0; padding: 0"> <LayoutHeader /></Layout.Header>
+      <Layout.Header style="background-color: #edeef0; padding: 0; height: 104px">
+        <LayoutHeader
+      /></Layout.Header>
       <Layout>
         <Layout.Sider
           v-model:collapsed="collapsed"
@@ -27,7 +29,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { Layout } from 'ant-design-vue'
-import LayoutHeader from '/@/layout/default/LayoutHeader.vue'
+import LayoutHeader from '/@/layout/default/layout/LayoutHeader.vue'
 import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
 import { useAppStore } from '/@/stores/app'
 

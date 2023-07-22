@@ -9,6 +9,6 @@ export class Axios {
   }
 
   setupInterceptors() {
-    console.log('设置拦截器')
+    // console.log('设置拦截器')
   }
 }

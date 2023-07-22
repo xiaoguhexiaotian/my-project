@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts" name="App">
-import Layout from '/@/layout/default/Layout.vue'
+import Layout from '/@/layout/default/layout/Layout.vue'
 </script>
 
 <style lang="less" scoped></style>

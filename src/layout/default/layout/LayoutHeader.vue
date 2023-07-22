@@ -12,6 +12,10 @@
       </Button>
     </div>
   </div>
+  <div :class="`${prefixCls}-tabs `">
+    <div :class="`${prefixCls}-logo`" v-if="menuSetting.type == MenuTypeEnum.TOP_LEFT">LOGO</div>
+    <Tabs />
+  </div>
   <MenuSettingDrawer
     :class-name="'menu-setting-drawer'"
     :visible="menuVisible"
@@ -46,6 +50,7 @@ import { SettingOutlined } from '@ant-design/icons-vue'
 import MenuSettingDrawer from '/@/components/Drawer/index.vue'
 import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
 import { useAppStore } from '/@/stores/app'
+import Tabs from '/@/layout/default/tabs/index.vue'
 import router from '/@/router'
 
 const appStore = useAppStore()
@@ -97,7 +102,7 @@ const jump = () => {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background-image: url('../../assets/images/header.webp');
+  background-image: url('../../../assets/images/header.webp');
   .ant-btn-text {
     color: #d8e5f8;
   }
@@ -193,6 +198,31 @@ const jump = () => {
   &-left {
     position: absolute;
     left: 5px;
+  }
+  &-tabs {
+    background-color: #fff;
+    :deep(.ant-tabs-nav) {
+      margin: 0;
+      .ant-tabs-tab {
+        padding: 8px;
+        border-radius: 8px !important;
+        &:hover {
+          .ant-tabs-tab-remove {
+            display: block;
+          }
+        }
+      }
+      .ant-tabs-tab-remove {
+        display: none;
+      }
+    }
+  }
+  &-logo {
+    width: 200px;
+    height: 40px;
+    float: left;
+    color: red;
+    background-color: yellow;
   }
 }
 </style>
