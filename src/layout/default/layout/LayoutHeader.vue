@@ -13,7 +13,13 @@
     </div>
   </div>
   <div :class="`${prefixCls}-tabs `">
-    <div :class="`${prefixCls}-logo`" v-if="menuSetting.type == MenuTypeEnum.TOP_LEFT">LOGO</div>
+    <div
+      :class="`${prefixCls}-logo`"
+      :style="{ width: menuSetting.collapsed ? '80px' : '200px' }"
+      v-if="menuSetting.type == MenuTypeEnum.TOP_LEFT"
+    >
+      LOGO
+    </div>
     <Tabs />
   </div>
   <MenuSettingDrawer
@@ -96,133 +102,5 @@ const jump = () => {
 </script>
 
 <style scoped lang="less">
-@prefix-cls: ~'@{namespace}-header';
-
-.@{prefix-cls} {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  background-image: url('../../../assets/images/header.webp');
-  .ant-btn-text {
-    color: #d8e5f8;
-  }
-  &-menu-type {
-    &-picker {
-      display: flex;
-      justify-content: space-around;
-      > div {
-        position: relative;
-        background-color: #f0f2f5;
-        width: 72px;
-        height: 60px;
-        margin-right: 30px;
-        padding: 24px;
-        border-radius: 4px;
-        box-shadow: 0 1px 2.5px #0000002e;
-        &:hover {
-          border: 2px solid #1890ff;
-        }
-        &:active {
-          border: 2px solid #1890ff;
-        }
-      }
-      > div:last-child {
-        margin-right: 0;
-      }
-      &-left-top {
-        &::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: #fff;
-          height: 25%;
-          width: 100%;
-          box-sizing: border-box;
-        }
-        &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: #273352;
-          height: 100%;
-          width: 30%;
-          z-index: 1;
-          box-sizing: border-box;
-        }
-      }
-
-      &-top-left {
-        &::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: #273352;
-          height: 25%;
-          width: 100%;
-          box-sizing: border-box;
-        }
-        &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: #fff;
-          height: 100%;
-          width: 30%;
-          box-sizing: border-box;
-        }
-      }
-
-      &-top {
-        &::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: #273352;
-          height: 25%;
-          width: 100%;
-          box-sizing: border-box;
-        }
-      }
-    }
-    &-title {
-      text-align: center;
-      font-weight: 500;
-      font-size: 16px;
-    }
-  }
-  &-left {
-    position: absolute;
-    left: 5px;
-  }
-  &-tabs {
-    background-color: #fff;
-    :deep(.ant-tabs-nav) {
-      margin: 0;
-      .ant-tabs-tab {
-        padding: 8px;
-        border-radius: 8px !important;
-        &:hover {
-          .ant-tabs-tab-remove {
-            display: block;
-          }
-        }
-      }
-      .ant-tabs-tab-remove {
-        display: none;
-      }
-    }
-  }
-  &-logo {
-    width: 200px;
-    height: 40px;
-    float: left;
-    color: red;
-    background-color: yellow;
-  }
-}
+@import '/src/design/sys/index.less';
 </style>

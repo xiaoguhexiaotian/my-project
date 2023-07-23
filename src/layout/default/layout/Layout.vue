@@ -2,7 +2,7 @@
   <Layout style="min-height: 100vh">
     <!-- 左侧菜单封装公用组件使用 -->
     <Layout.Sider
-      v-model:collapsed="collapsed"
+      v-model:collapsed="menuSetting.collapsed"
       collapsible
       v-if="menuSetting.type == MenuTypeEnum.LEFT_TOP"
     />
@@ -12,7 +12,7 @@
       /></Layout.Header>
       <Layout>
         <Layout.Sider
-          v-model:collapsed="collapsed"
+          v-model:collapsed="menuSetting.collapsed"
           collapsible
           v-if="menuSetting.type == MenuTypeEnum.TOP_LEFT"
         />
@@ -27,13 +27,10 @@
   </Layout>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { Layout } from 'ant-design-vue'
 import LayoutHeader from '/@/layout/default/layout/LayoutHeader.vue'
 import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
 import { useAppStore } from '/@/stores/app'
-
-const collapsed = ref<boolean>(false)
 
 const appStore = useAppStore()
 const { menuSetting } = appStore.getProjectConfig
