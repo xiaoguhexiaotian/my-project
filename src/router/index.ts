@@ -27,7 +27,6 @@ const routes: any = Object.entries(pages).map(([path, meta]) => {
     meta
   }
 })
-console.log(routes)
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

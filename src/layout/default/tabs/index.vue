@@ -7,6 +7,11 @@
     :hideAdd="true"
   >
     <TabPane
+      :key="homeRoute!.path"
+      :tab="homeRoute!.meta.title"
+      :closable="!homeRoute!.meta.isHome"
+    />
+    <TabPane
       v-for="i in tabList"
       :key="i.fullPath"
       :tab="i.meta.title"
@@ -23,20 +28,23 @@ import type { RouteLocationNormalized } from 'vue-router'
 import router from '/@/router'
 
 const tabStore = usetabStore()
+const activeKey = ref()
+
+// 获取首页路由信息，首页始终展示
+const homeRoute = router.getRoutes().find((i) => i.meta.isHome)
 
 listenerRouteChange((route: RouteLocationNormalized) => {
   const { fullPath } = route
   activeKey.value = fullPath
-
-  if (!tabList.value.some((i) => i.fullPath == fullPath)) tabStore.addTab(route)
+  // tabList中不存在且不是首页的情况下才添加
+  if (!tabList.value.some((i) => i.fullPath == fullPath) && !route.meta.isHome)
+    tabStore.addTab(route)
 })
 
 // 获取需要展示的tab列表
 const tabList = computed(() => {
   return tabStore.getTabList.filter((item) => !item.meta?.hideTab)
 })
-
-const activeKey = ref()
 
 // 点击切换
 const handleChange = (val) => {
