@@ -50,7 +50,7 @@ const test = (v, v2) => {
   activeKey[v2] = v
   router.push({ path: '/dashboard' })
 }
-// console.log('测试缓存1')
+console.log('测试缓存2')
 </script>
 
 <style lang="less" scoped></style>

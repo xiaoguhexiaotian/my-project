@@ -14,6 +14,9 @@ export const usetabStore = defineStore({
   getters: {
     getTabList(): RouteLocationNormalized[] {
       return this.tabList
+    },
+    getCacheList(): Set<string> {
+      return this.cacheList
     }
   },
   actions: {

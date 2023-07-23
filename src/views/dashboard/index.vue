@@ -16,6 +16,7 @@ import { test } from '/@/api/init/menu'
 const { prefixCls } = useDesign('home')
 
 test()
+console.log('测试缓存1')
 </script>
 
 <style lang="less" scoped></style>
