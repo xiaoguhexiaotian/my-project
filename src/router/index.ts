@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import type { RouteLocationNormalized } from 'vue-router'
 
 // 页面路由信息
 const pages = import.meta.glob('../views/**/page.ts', {
@@ -27,6 +28,20 @@ const routes: any = Object.entries(pages).map(([path, meta]) => {
     meta
   }
 })
+
+/**
+ * 404
+ * @parms route 即将跳转的路由信息
+ */
+export function go404(route: RouteLocationNormalized) {
+  const { path } = route
+  if (routes.findIndex((i) => i.path == path) > -1) {
+    return true
+  } else {
+    router.push({ path: 'noPage' })
+    return false
+  }
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

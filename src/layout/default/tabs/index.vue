@@ -47,13 +47,14 @@ const tabList = computed(() => {
 })
 
 // 点击切换
-const handleChange = (val) => {
+const handleChange = (val: string) => {
   activeKey.value = val
-  router.push({ path: val })
+  const route = tabList.value.find((i) => i.fullPath == val)
+  router.push({ path: val, query: route?.query })
 }
 
 // 点击关闭
 const closeTab = (targetKey: string) => {
-  tabStore.closeTabByKey(targetKey)
+  tabStore.closeTabByKey(targetKey, router)
 }
 </script>
