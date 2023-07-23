@@ -6,7 +6,12 @@
     @edit="closeTab"
     :hideAdd="true"
   >
-    <TabPane v-for="i in tabList" :key="i.fullPath" :tab="i.meta.title" />
+    <TabPane
+      v-for="i in tabList"
+      :key="i.fullPath"
+      :tab="i.meta.title"
+      :closable="!i.meta.isHome"
+    />
   </Tabs>
 </template>
 <script lang="ts" setup>
@@ -20,8 +25,10 @@ import router from '/@/router'
 const tabStore = usetabStore()
 
 listenerRouteChange((route: RouteLocationNormalized) => {
-  activeKey.value = route.fullPath
-  tabStore.addTab(route)
+  const { fullPath } = route
+  activeKey.value = fullPath
+
+  if (!tabList.value.some((i) => i.fullPath == fullPath)) tabStore.addTab(route)
 })
 
 // 获取需要展示的tab列表
@@ -35,11 +42,10 @@ const activeKey = ref()
 const handleChange = (val) => {
   activeKey.value = val
   router.push({ path: val })
-  console.log(val)
 }
 
 // 点击关闭
-const closeTab = (targetKey: string | MouseEvent) => {
-  console.log(targetKey)
+const closeTab = (targetKey: string) => {
+  tabStore.closeTabByKey(targetKey)
 }
 </script>
