@@ -31,19 +31,26 @@ const tabStore = usetabStore()
 const activeKey = ref()
 
 // 获取首页路由信息，首页始终展示
-const homeRoute = router.getRoutes().find((i) => i.meta.isHome)
+// 类型问题需要解决/或者直接拿到route类型
+const homeRoute: any = router.getRoutes().find((i) => i.meta.isHome)
+Object.assign(homeRoute!, { fullPath: homeRoute!.path })
 
 listenerRouteChange((route: RouteLocationNormalized) => {
+  // 先判断tabList中是否有首页，如果没有首页先添加首页进去
+  if (tabStore.getTabList.findIndex((i) => i.path == homeRoute?.path) == -1) {
+    tabStore.addTab(homeRoute)
+  }
   const { fullPath } = route
   activeKey.value = fullPath
   // tabList中不存在且不是首页的情况下才添加
-  if (!tabList.value.some((i) => i.fullPath == fullPath) && !route.meta.isHome)
+  if (!tabList.value.some((i) => i.fullPath == fullPath) && !route.meta.isHome) {
     tabStore.addTab(route)
+  }
 })
 
 // 获取需要展示的tab列表
 const tabList = computed(() => {
-  return tabStore.getTabList.filter((item) => !item.meta?.hideTab)
+  return tabStore.getTabList.filter((item) => !item.meta?.hideTab && !item.meta.isHome)
 })
 
 // 点击切换

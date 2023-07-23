@@ -1,3 +1,4 @@
+import { RouteLocationNormalized } from 'vue-router'
 import { setRouteChange } from '/@/hooks/sys/routeChange'
 import { go404 } from '/@/router'
 // 先订阅一个消息，路由变化时去通知，消费这个消息，然后去更新tabs库的状态
@@ -12,7 +13,7 @@ export const routeInit = (router) => {
  */
 const routeBeforeEach = (router) => {
   // 注册全局的导航守卫
-  router.beforeEach((to) => {
+  router.beforeEach((to: RouteLocationNormalized) => {
     if (go404(to)) {
       // 在路由切换之前执行的逻辑
       setRouteChange(to)
