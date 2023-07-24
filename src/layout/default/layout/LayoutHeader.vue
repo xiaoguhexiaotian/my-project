@@ -1,8 +1,8 @@
 <template>
   <div :class="`${prefixCls} px-5px`">
     <div :style="headerStyle">
-      <span v-if="menuSetting.type != MenuTypeEnum.LEFT_TOP" :class="`${prefixCls}-left`">
-        非LEFT_Top模式下header左侧
+      <span v-if="menuSetting.type == MenuTypeEnum.TOP" :class="`${prefixCls}-left`">
+        <Menu />
       </span>
       <span @click="jump">header</span>
       <Button type="text" shape="circle" @click="openSetting">
@@ -58,6 +58,7 @@ import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
 import { useAppStore } from '/@/stores/app'
 import Tabs from '/@/layout/default/tabs/index.vue'
 import router from '/@/router'
+import Menu from '/@/layout/default/menu/index.vue'
 
 const appStore = useAppStore()
 

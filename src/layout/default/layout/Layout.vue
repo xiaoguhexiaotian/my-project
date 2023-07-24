@@ -5,17 +5,21 @@
       v-model:collapsed="menuSetting.collapsed"
       collapsible
       v-if="menuSetting.type == MenuTypeEnum.LEFT_TOP"
-    />
+    >
+      <Menu />
+    </Layout.Sider>
     <Layout>
       <Layout.Header style="background-color: #edeef0; padding: 0; height: 104px">
-        <LayoutHeader
-      /></Layout.Header>
+        <LayoutHeader />
+      </Layout.Header>
       <Layout>
         <Layout.Sider
           v-model:collapsed="menuSetting.collapsed"
           collapsible
           v-if="menuSetting.type == MenuTypeEnum.TOP_LEFT"
-        />
+        >
+          <Menu />
+        </Layout.Sider>
         <Layout>
           <Layout.Content>
             <slot name="body"></slot>
@@ -31,6 +35,7 @@ import { Layout } from 'ant-design-vue'
 import LayoutHeader from '/@/layout/default/layout/LayoutHeader.vue'
 import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
 import { useAppStore } from '/@/stores/app'
+import Menu from '/@/layout/default/menu/index.vue'
 
 const appStore = useAppStore()
 const { menuSetting } = appStore.getProjectConfig
