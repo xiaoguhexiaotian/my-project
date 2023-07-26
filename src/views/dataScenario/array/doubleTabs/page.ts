@@ -1,3 +1,6 @@
 export default {
-  title: '双tabs'
+  title: '双tabs',
+  pid: 'array',
+  id: 'doubleTabs',
+  isLowestLevel: true
 }

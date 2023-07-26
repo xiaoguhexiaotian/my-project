@@ -1,3 +1,6 @@
 export default {
-  title: 'tree'
+  title: 'tree',
+  pid: 'array',
+  id: 'treeArray',
+  isLowestLevel: true
 }
