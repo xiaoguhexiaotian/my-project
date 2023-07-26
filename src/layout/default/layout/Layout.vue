@@ -6,7 +6,7 @@
       collapsible
       v-if="menuSetting.type == MenuTypeEnum.LEFT_TOP"
     >
-      <Menu />
+      <Menu :menuData="menuData" />
     </Layout.Sider>
     <Layout>
       <Layout.Header style="background-color: #edeef0; padding: 0; height: 104px">
@@ -18,7 +18,7 @@
           collapsible
           v-if="menuSetting.type == MenuTypeEnum.TOP_LEFT"
         >
-          <Menu />
+          <Menu :menuData="menuData" />
         </Layout.Sider>
         <Layout>
           <Layout.Content>
@@ -36,6 +36,7 @@ import LayoutHeader from '/@/layout/default/layout/LayoutHeader.vue'
 import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
 import { useAppStore } from '/@/stores/app'
 import Menu from '/@/layout/default/menu/index.vue'
+import { menuData } from '/@/router'
 
 const appStore = useAppStore()
 const { menuSetting } = appStore.getProjectConfig

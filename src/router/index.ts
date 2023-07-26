@@ -1,3 +1,4 @@
+import { Component } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteLocationNormalized } from 'vue-router'
 import { toArrayTree } from 'xe-utils'
@@ -9,6 +10,16 @@ interface Meta {
   isHome?: boolean
   hideTab?: boolean
   isLowestLevel?: boolean
+  icon: string
+}
+export interface IRoute {
+  path: string
+  name: string
+  id: string
+  pid: string
+  component: Component | undefined
+  meta: Meta
+  children?: IRoute[]
 }
 
 // 页面路由信息
@@ -42,7 +53,7 @@ const routes: any = Object.entries(pages).map(([path, meta]: [string, Meta]) => 
 })
 
 // 通过每个page中的id，pid转化为树形菜单结构
-export const menuData = toArrayTree(routes, {
+export const menuData: IRoute[] = toArrayTree(routes, {
   parentKey: 'pid',
   key: 'id',
   children: 'children'
