@@ -1,25 +1,25 @@
 <template>
-  <a-sub-menu :key="menuInfo?.id">
+  <SubMenu :key="menuInfo?.id">
     <template #title>{{ menuInfo!.meta.title }}</template>
+    <template #icon><span :class="menuInfo!.meta.icon" /></template>
     <template v-for="item in menuInfo!.children" :key="item.key">
       <template v-if="item.children && item.children.length == 0">
-        <a-menu-item :key="item.id" @click="handleClick(item)">
-          <!-- <template #icon>
-            <PieChartOutlined />
-          </template> -->
+        <MenuItem :key="item.id" @click="handleClick(item)">
+          <template #icon><span :class="item.meta.icon" /></template>
           {{ item.meta.title }}
-        </a-menu-item>
+        </MenuItem>
       </template>
       <template v-else>
-        <SubMenu :menu-info="item" :key="item.id" />
+        <MySubMenu :menu-info="item" :key="item.id" />
       </template>
     </template>
-  </a-sub-menu>
+  </SubMenu>
 </template>
 <script setup lang="ts">
+import { MenuItem, SubMenu } from 'ant-design-vue'
 import { object } from 'vue-types'
 import router, { IRoute } from '/@/router'
-import SubMenu from './subMenu.vue'
+import MySubMenu from './subMenu.vue'
 
 const { menuInfo } = defineProps({
   menuInfo: object<IRoute>()

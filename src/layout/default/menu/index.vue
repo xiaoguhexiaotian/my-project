@@ -1,24 +1,23 @@
 <template>
-  <a-menu :mode="menuSetting.type == MenuTypeEnum.TOP ? 'horizontal' : 'vertical'" theme="dark">
+  <Menu :mode="menuSetting.type == MenuTypeEnum.TOP ? 'horizontal' : 'vertical'" theme="dark">
     <template v-for="item in menuData" :key="item.id">
       <template v-if="item.children && item.children.length == 0">
-        <a-menu-item :key="item.id" @click="handleClick(item)">
-          <!-- <template #icon>
-            <PieChartOutlined />
-          </template> -->
+        <Menu.Item :key="item.id" @click="handleClick(item)">
+          <template #icon><span :class="item.meta.icon" /></template>
           {{ item.meta.title }}
-        </a-menu-item>
+        </Menu.Item>
       </template>
       <template v-else>
-        <SubMenu :key="item.id" :menu-info="item" />
+        <MySubMenu :key="item.id" :menu-info="item" />
       </template>
     </template>
-  </a-menu>
+  </Menu>
 </template>
 <script lang="ts" setup>
+import { Menu } from 'ant-design-vue'
 import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
 import { useAppStore } from '/@/stores/app'
-import SubMenu from './subMenu.vue'
+import MySubMenu from './subMenu.vue'
 import { array } from 'vue-types'
 import router, { IRoute } from '/@/router'
 

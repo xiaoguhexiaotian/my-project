@@ -93,7 +93,7 @@ const settingMenuType = (type) => {
  * 重置
  */
 const reset = () => {
-  // appStore.setProjectConfig(Object.assign(menuSetting, { type: MenuTypeEnum.TOP }))
+  appStore.setProjectConfig(Object.assign(menuSetting, { type: MenuTypeEnum.TOP }))
 }
 /**
  * 路由跳转
@@ -104,5 +104,5 @@ const jump = () => {
 </script>
 
 <style scoped lang="less">
-@import '/src/design/sys/index.less';
+@import '/src/design/sys/header/index.less';
 </style>
