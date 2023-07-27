@@ -50,7 +50,7 @@ let contentMaxHeight = computed<string>(() => {
     BODY_HEADER_HEIGHT -
     MARGIN -
     PADDING -
-    70
+    38
   }px`
 })
 // console.log(contentMaxHeight)
