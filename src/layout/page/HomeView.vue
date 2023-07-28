@@ -1,31 +1,8 @@
-<template>
-  <vxe-grid v-bind="gridOptions">
-    <template #pager>
-      <!--使用 pager 插槽-->
-      <vxe-pager
-        :layouts="[
-          'Sizes',
-          'PrevJump',
-          'PrevPage',
-          'Number',
-          'NextPage',
-          'NextJump',
-          'FullJump',
-          'Total'
-        ]"
-        v-model:current-page="tablePage.currentPage"
-        v-model:page-size="tablePage.pageSize"
-        :total="tablePage.total"
-        @page-change="handlePageChange"
-      >
-      </vxe-pager>
-    </template>
-  </vxe-grid>
-</template>
+<template>123</template>
 
 <script lang="ts" setup>
 import { reactive } from 'vue'
-import { VxeGridProps, VxePagerEvents } from 'vxe-table'
+import { VxeGridProps } from 'vxe-table'
 
 interface RowVO {
   id: number
@@ -159,17 +136,6 @@ const findList = () => {
       }
     ]
   }, 300)
-}
-
-const searchEvent = () => {
-  tablePage.currentPage = 1
-  findList()
-}
-
-const handlePageChange: VxePagerEvents.PageChange = ({ currentPage, pageSize }) => {
-  tablePage.currentPage = currentPage
-  tablePage.pageSize = pageSize
-  findList()
 }
 
 findList()
