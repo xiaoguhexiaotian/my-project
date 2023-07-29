@@ -38,7 +38,7 @@ export function checkIfInstanceOf(obj, classFunction) {
 }
 
 /**
- * 两分查找
+ * 两分查找：目标在数组的索引
  * @param nums 数组
  * @param target 目标值
  */
@@ -63,23 +63,82 @@ export function binarySearch(nums, target) {
   }
   return -1
 }
-
+/**
+ * 目标值在数组的索引或插入的索引
+ * @param nums 数组
+ * @param target 目标值
+ * @returns 返回索引
+ */
 export function interpolationSubscript(nums, target) {
-  let mid,
-    left = 0,
-    right = nums.length - 1
+  let left = 0
+  let right = nums.length - 1
 
   while (left <= right) {
-    mid = left + Math.ceil((right - left) / 2)
-    if (nums[mid] > target) {
-      right = mid - 1
-    } else if (nums[mid] < target) {
-      left = mid + 1
-    } else if ((left = right)) {
-      mid = left - 1
+    const mid = Math.floor((left + right) / 2)
+    const midValue = nums[mid]
+    if (midValue === target) {
+      return mid // 找到目标值，返回索引
+    } else if (midValue < target) {
+      left = mid + 1 // 目标值在右半部分
     } else {
-      return mid
+      right = mid - 1 // 目标值在左半部分
     }
   }
-  return right + 1
+
+  // 没有找到目标值，返回它将会被插入的位置
+  return left
+}
+
+/**
+ * 找到目标值的初始位置和结束位置
+ */
+export function searchRange(nums, target) {
+  function findFirstOccurrence(target) {
+    let left = 0
+    let right = nums.length - 1
+    let result = -1
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2)
+
+      if (nums[mid] >= target) {
+        right = mid - 1
+      } else {
+        left = mid + 1
+      }
+
+      if (nums[mid] === target) {
+        result = mid
+      }
+    }
+
+    return result
+  }
+
+  function findLastOccurrence(target) {
+    let left = 0
+    let right = nums.length - 1
+    let result = -1
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2)
+
+      if (nums[mid] <= target) {
+        left = mid + 1
+      } else {
+        right = mid - 1
+      }
+
+      if (nums[mid] === target) {
+        result = mid
+      }
+    }
+
+    return result
+  }
+
+  const firstOccurrence = findFirstOccurrence(target)
+  const lastOccurrence = findLastOccurrence(target)
+
+  return [firstOccurrence, lastOccurrence]
 }

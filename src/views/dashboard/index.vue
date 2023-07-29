@@ -12,9 +12,9 @@ import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
 import { useDesign } from '/@/hooks/useDesign'
 import Codemirror from '/@/components/Codemirror/index.vue'
 import { test } from '/@/api/init/menu'
-import { interpolationSubscript } from '/@/utils/study/array'
+import { searchRange } from '/@/utils/study/array'
 
-const res = interpolationSubscript([-1, 0, 3, 5, 9, 12], 4)
+const res = searchRange([-1, 0, 3, 3, 5, 9, 12], 3)
 console.log(res)
 
 const { prefixCls } = useDesign('home')
