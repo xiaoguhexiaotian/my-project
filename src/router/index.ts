@@ -57,7 +57,7 @@ export const menuData: IRoute[] = toArrayTree(routes, {
   parentKey: 'pid',
   key: 'id',
   children: 'children'
-}).filter((i) => !i.meta.hideTab)
+}).filter((i) => !i.meta.hideMenu)
 console.log(menuData)
 
 /**
