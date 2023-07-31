@@ -19,8 +19,14 @@ import { oneDark } from '@codemirror/theme-one-dark'
 import { javascript } from '@codemirror/lang-javascript'
 import { autocompletion } from '@codemirror/autocomplete'
 import { Button } from 'ant-design-vue'
+import { propTypes } from '/@/utils/propTypes'
+
+const { code } = defineProps({
+  code: propTypes.string // 页面代码
+})
+
 // 初始化
-let codeVal = ref(`function test() {
+const codeVal = ref(`function test() {
   const param = 'gggg'
   const test = (param)=>{
     console.log(param)
@@ -29,6 +35,8 @@ let codeVal = ref(`function test() {
 }`)
 
 const handle = () => {
+  console.log(codeVal.value)
+
   try {
     const func = new Function(`return ${codeVal.value}`)()
     func()
@@ -40,8 +48,13 @@ const handle = () => {
 
 // 扩展
 const extensions = [javascript(), oneDark, autocompletion()]
+const init = () => {
+  if (code) codeVal.value = code
+}
 
-onMounted(() => {})
+onMounted(() => {
+  init()
+})
 </script>
 
 <style>

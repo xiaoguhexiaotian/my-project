@@ -1,7 +1,7 @@
 export default {
-  title: '双tabs',
+  title: '循环tabs',
   pid: 'array',
-  id: 'doubleTabs',
+  id: 'forTabs',
   isLowestLevel: true,
   icon: 'chen-cha'
 }
