@@ -1,11 +1,11 @@
 <template>
   <SubMenu :key="menuInfo?.id">
     <template #title>{{ menuInfo!.meta.title }}</template>
-    <template #icon><span :class="menuInfo!.meta.icon" /></template>
+    <template #icon><span :class="`${menuInfo!.meta.icon} iconfont`" /></template>
     <template v-for="item in menuInfo!.children" :key="item.key">
       <template v-if="item.children && item.children.length == 0">
         <MenuItem :key="item.id" @click="handleClick(item)">
-          <template #icon><span :class="item.meta.icon" /></template>
+          <template #icon><span :class="`${item.meta.icon} iconfont`" /></template>
           {{ item.meta.title }}
         </MenuItem>
       </template>

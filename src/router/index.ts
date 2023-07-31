@@ -57,8 +57,8 @@ export const menuData: IRoute[] = toArrayTree(routes, {
   parentKey: 'pid',
   key: 'id',
   children: 'children'
-})
-console.log(routes, menuData)
+}).filter((i) => !i.meta.hideTab)
+console.log(menuData)
 
 /**
  * 404

@@ -3,7 +3,7 @@
     <template v-for="item in menuData" :key="item.id">
       <template v-if="item.children && item.children.length == 0">
         <Menu.Item :key="item.id" @click="handleClick(item)">
-          <template #icon><span :class="item.meta.icon" /></template>
+          <template #icon><span :class="`${item.meta.icon} iconfont`" /></template>
           {{ item.meta.title }}
         </Menu.Item>
       </template>
