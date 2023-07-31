@@ -1,84 +1,52 @@
 <template>
-  <Codemirror
-    v-model:value="code"
-    :options="cmOptions"
-    border
-    ref="cmRef"
-    height="400"
-    width="600"
-    @change="onChange"
-    @input="onInput"
-    @ready="onReady"
-  >
-  </Codemirror>
-  <a-button @click="handle">执行</a-button>
+  <div class="main">
+    <CodeMirror
+      placeholder="Please enter the code..."
+      v-model="codeVal"
+      basic
+      style="height: 400px; width: 700px"
+      :indent-with-tab="true"
+      :tabSize="2"
+      :extensions="extensions"
+    />
+    <Button type="primary" @click="handle">执行</Button>
+  </div>
 </template>
-<script lang="ts" setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-// import 'codemirror/mode/javascript/javascript.js'
-import Codemirror from 'codemirror-editor-vue3'
-import type { CmComponentRef } from 'codemirror-editor-vue3'
-import type { Editor, EditorConfiguration } from 'codemirror'
-
-const code = ref(
-  `function tttt (param)  {
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import CodeMirror from 'vue-codemirror6'
+import { oneDark } from '@codemirror/theme-one-dark'
+import { javascript } from '@codemirror/lang-javascript'
+import { autocompletion } from '@codemirror/autocomplete'
+import { Button } from 'ant-design-vue'
+// 初始化
+let codeVal = ref(`function test() {
+  const param = 'gggg'
+  const test = (param)=>{
     console.log(param)
   }
-  param = [3,5,7]
-`
-)
-const cmRef = ref<CmComponentRef>()
-const cmOptions: EditorConfiguration = {
-  mode: 'text/javascript'
-}
-
-const onChange = (val: string, cm: Editor) => {
-  // console.log(val)
-  // console.log(cm.getValue())
-}
-
-const onInput = (val: string) => {
-  // console.log(val)
-}
-
-const onReady = (cm: Editor) => {
-  // console.log(cm.focus())
-}
-
-const isJson = (param) => {
-  try {
-    JSON.parse(param)
-    return true
-  } catch (error) {
-    console.log(error)
-    return false
-  }
-}
+  test(param)
+}`)
 
 const handle = () => {
   try {
-    let param = code.value.split('param = ')[1]
-    const func = new Function(`return ${code.value.split('param = ')[0].trim()}`)
-    if (isJson(param)) param = JSON.parse(param)
-    return func()(param)
+    const func = new Function(`return ${codeVal.value}`)()
+    func()
   } catch (error) {
+    console.error('error: ' + error)
     return null
   }
 }
 
-onMounted(() => {
-  // setTimeout(() => {
-  //   cmRef.value?.refresh()
-  // }, 1000)
-  // setTimeout(() => {
-  //   cmRef.value?.resize(300, 200)
-  // }, 2000)
-  // setTimeout(() => {
-  //   cmRef.value?.cminstance.isClean()
-  // }, 3000)
-})
+// 扩展
+const extensions = [javascript(), oneDark, autocompletion()]
 
-onUnmounted(() => {
-  cmRef.value?.destroy()
-})
+onMounted(() => {})
 </script>
+
+<style>
+/* required! */
+.cm-editor {
+  height: 100%;
+}
+</style>
