@@ -16,7 +16,14 @@
 import { ref, onMounted } from 'vue'
 import CodeMirror from 'vue-codemirror6'
 import { oneDark } from '@codemirror/theme-one-dark'
-import { javascript } from '@codemirror/lang-javascript'
+import {
+  autoCloseTags,
+  javascript,
+  javascriptLanguage,
+  jsxLanguage,
+  tsxLanguage,
+  typescriptLanguage
+} from '@codemirror/lang-javascript'
 import { autocompletion } from '@codemirror/autocomplete'
 import { Button } from 'ant-design-vue'
 import { propTypes } from '/@/utils/propTypes'
@@ -48,7 +55,16 @@ const handle = () => {
 }
 
 // 扩展
-const extensions = [javascript(), oneDark, autocompletion()]
+const extensions = [
+  javascript({ jsx: true, typescript: true }),
+  typescriptLanguage,
+  javascriptLanguage,
+  jsxLanguage,
+  tsxLanguage,
+  autoCloseTags,
+  oneDark,
+  autocompletion()
+]
 const init = () => {
   if (code) codeVal.value = code
 }
