@@ -35,8 +35,6 @@ const codeVal = ref(`function test() {
 }`)
 
 const handle = () => {
-  console.log(codeVal.value)
-
   try {
     const func = new Function(`return ${codeVal.value}`)()
     func()
