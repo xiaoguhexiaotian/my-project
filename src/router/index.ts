@@ -3,14 +3,16 @@ import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteLocationNormalized } from 'vue-router'
 import { toArrayTree } from 'xe-utils'
 
-interface Meta {
+export interface Meta {
   id: string
   pid?: string
   title: string
   isHome?: boolean
   hideTab?: boolean
+  hideMenu?: boolean
   isLowestLevel?: boolean
   icon: string
+  sort?: number
 }
 export interface IRoute {
   path: string
@@ -57,7 +59,9 @@ export const menuData: IRoute[] = toArrayTree(routes, {
   parentKey: 'pid',
   key: 'id',
   children: 'children'
-}).filter((i) => !i.meta.hideMenu)
+})
+  .filter((i) => !i.meta.hideMenu)
+  .sort((a, b) => a.meta.sort - b.meta.sort)
 console.log(menuData)
 
 /**
@@ -74,7 +78,7 @@ export function go404(route: RouteLocationNormalized) {
   }
 }
 
-// console.log(routes)
+console.log(routes)
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

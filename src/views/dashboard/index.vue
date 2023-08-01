@@ -2,7 +2,7 @@
   <!-- <div :class="`${prefixCls}`">首页</div> -->
   <TableTemplate>
     <template #content>
-      <h1 class="text-28px">还没想好首页写啥</h1>
+      <h1 class="text-28px">还没想好写啥</h1>
       <Codemirror />
     </template>
   </TableTemplate>

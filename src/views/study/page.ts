@@ -1,5 +1,6 @@
 export default {
   title: '算法学习',
   id: 'study',
-  icon: 'chen-bawangcan'
+  icon: 'chen-bawangcan',
+  sort: 2
 }
