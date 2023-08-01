@@ -4,12 +4,12 @@
       placeholder="Please enter the code..."
       v-model="codeVal"
       basic
-      style="height: 400px; width: 700px"
+      :style="{ height: height, width: width }"
       :indent-with-tab="true"
       :tabSize="2"
       :extensions="extensions"
     />
-    <Button type="primary" @click="handle">执行</Button>
+    <Button type="primary" @click="handle" v-if="isShowBtn">执行</Button>
   </div>
 </template>
 <script setup lang="ts">
@@ -22,7 +22,10 @@ import { Button } from 'ant-design-vue'
 import { propTypes } from '/@/utils/propTypes'
 
 const { code } = defineProps({
-  code: propTypes.string // 页面代码
+  code: propTypes.string, // 页面代码
+  height: propTypes.string.def('400px'),
+  width: propTypes.string.def('700px'),
+  isShowBtn: propTypes.bool.def(true)
 })
 
 // 初始化
