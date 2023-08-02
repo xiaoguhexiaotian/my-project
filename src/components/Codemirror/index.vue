@@ -1,6 +1,7 @@
 <template>
   <div class="main">
     <CodeMirror
+      class="codeMirror"
       placeholder="Please enter the code..."
       v-model="codeVal"
       basic
@@ -8,6 +9,7 @@
       :indent-with-tab="true"
       :tabSize="2"
       :extensions="extensions"
+      scrollbarStyle="simple"
     />
     <Button type="primary" @click="handle" v-if="isShowBtn">执行</Button>
   </div>
@@ -27,6 +29,8 @@ import {
 import { autocompletion } from '@codemirror/autocomplete'
 import { Button } from 'ant-design-vue'
 import { propTypes } from '/@/utils/propTypes'
+// import 'codemirror/addon/scroll/simplescrollbars.css'
+// import 'codemirror/addon/scroll/simplescrollbars'
 
 const { code } = defineProps({
   code: propTypes.string, // 页面代码
@@ -78,5 +82,20 @@ onMounted(() => {
 /* required! */
 .cm-editor {
   height: 100%;
+}
+
+/*滚动条样式*/
+.codeMirror::-webkit-scrollbar {
+  width: 8px;
+}
+.codeMirror::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba#D8D8D8;
+  background: rgba(0, 0, 0, 0.2);
+}
+.codeMirror::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba#D8D8D8;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1);
 }
 </style>

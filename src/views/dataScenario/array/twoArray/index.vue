@@ -1,14 +1,12 @@
 <template>
   <TableTemplate>
     <template #content>
-      <div style="height: 100%; overflow: auto">
-        <h1 class="text-24px">双数组对象筛选</h1>
-        <Codemirror :code="code" height="600px" width="1000px" />
-        <h1 class="text-24px">双数组对象取交集</h1>
-        <Codemirror :code="code2" height="600px" width="1000px" />
-        <h1 class="text-24px">双普通数组取交集</h1>
-        <Codemirror :code="code3" height="600px" width="1000px" />
-      </div>
+      <h1 class="text-24px">双数组对象数组方法操作</h1>
+      <Codemirror :code="code" height="600px" width="1000px" />
+      <h1 class="text-24px">双数组对象Set方法操作</h1>
+      <Codemirror :code="code2" height="600px" width="1000px" />
+      <h1 class="text-24px">双普通数组Set方法操作</h1>
+      <Codemirror :code="code3" height="600px" width="1000px" />
     </template>
   </TableTemplate>
 </template>
@@ -35,13 +33,13 @@ const code = ref(`function test() {
   a.forEach((i) => {
     if (b.findIndex((item) => item.id === i.id) != -1) c.push(i)
   })
-  console.log('c=======>', c)
+  console.log('a,b数组对象取交集=======>', c)
 
   // a,b数组取并集
   b.forEach((i) => {
     if (a.findIndex((item) => item.id === i.id) == -1) a.push(i)
   })
-  console.log('a=======>', a)
+  console.log('a,b数组对象取并集=======>', a)
 
 }
 test()
@@ -88,20 +86,25 @@ const code3 = ref(`function test() {
         const union = new Set([...setA, ...setB]); // 并集
         const differenceA = new Set([...setA].filter(x => !setB.has(x))); // a数组中有而b数组中没有的元素
         const differenceB = new Set([...setB].filter(x => !setA.has(x))); // b数组中有而a数组中没有的元素
-        if (intersection.size === 0) {
-          return 'disjoint'; // a、b不相交
-        } else if (intersection.size === setA.size && intersection.size === setB.size) {
-          return 'equal';   // a、b相等
-        } else if (intersection.size === setA.size) {
-          return 'subset';  // a是子集
-        } else if (intersection.size === setB.size) {
-          return 'superset'; // a是父集
-        } else {
-          return 'mix';// a、b相交但不包含
-        }
+        // if (intersection.size === 0) {
+        //   return 'a、b不相交'; // a、b不相交
+        // } else if (intersection.size === setA.size && intersection.size === setB.size) {
+        //   return 'a、b相等';   // a、b相等
+        // } else if (intersection.size === setA.size) {
+        //   return 'a是子集';  // a是子集
+        // } else if (intersection.size === setB.size) {
+        //   return 'a是父集'; // a是父集
+        // } else {
+        //   return 'a、b相交但不包含';// a、b相交但不包含
+        // }
+        console.log(
+          '交集====>', intersection,
+          '并集====>',union,
+          'a数组中有而b数组中没有的元素====>',differenceA,
+          'b数组中有而a数组中没有的元素====>',differenceB)
       } 
-   const res = compareArr(a,b)
-   console.log(res)
+ compareArr(a,b)
+
 }
 test()`)
 </script>

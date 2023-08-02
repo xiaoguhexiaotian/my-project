@@ -1,14 +1,12 @@
 <template>
   <TableTemplate>
     <template #content>
-      <div style="height: 100%; overflow: auto">
-        <h1 class="text-24px">链式调用会进入微任务排队等待</h1>
-        <Codemirror :code="code" height="600px" />
-        <h1 class="text-24px">async await语法糖</h1>
-        <Codemirror :code="code2" height="600px" />
-        <h1 class="text-24px">Promise与async await</h1>
-        <Codemirror :code="code3" height="600px" />
-      </div>
+      <h1 class="text-24px">链式调用会进入微任务排队等待</h1>
+      <Codemirror :code="code" height="600px" />
+      <h1 class="text-24px">async await语法糖</h1>
+      <Codemirror :code="code2" height="600px" />
+      <h1 class="text-24px">Promise与async await</h1>
+      <Codemirror :code="code3" height="600px" />
     </template>
   </TableTemplate>
 </template>

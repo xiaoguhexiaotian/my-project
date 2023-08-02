@@ -1,15 +1,13 @@
 <template>
   <TableTemplate>
     <template #content>
-      <div style="height: 100%; overflow: auto">
-        输入框：<ClassInput /> 表单：<ClassFormDom />
-        <InputDom />
-        按钮：<OkButtonDom /> 下拉：<SelectDom />
-        <h1 class="text-24px">class类代码</h1>
-        <Codemirror :code="code" height="600px" width="1000px" :isShowBtn="false" />
-        <h1 class="text-24px">组件库代码</h1>
-        <Codemirror :code="code2" height="600px" width="1000px" :isShowBtn="false" />
-      </div>
+      输入框：<ClassInput /> 表单：<ClassFormDom />
+      <InputDom />
+      按钮：<OkButtonDom /> 下拉：<SelectDom />
+      <h1 class="text-24px">class类代码</h1>
+      <Codemirror :code="code" height="600px" width="1000px" :isShowBtn="false" />
+      <h1 class="text-24px">组件库代码</h1>
+      <Codemirror :code="code2" height="600px" width="1000px" :isShowBtn="false" />
     </template>
   </TableTemplate>
 </template>

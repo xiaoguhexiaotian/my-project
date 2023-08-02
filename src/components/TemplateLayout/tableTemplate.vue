@@ -9,7 +9,9 @@
     ref="billFormContent"
     v-if="paymentType == 0 || paymentType == 1 || paymentType == 4"
   >
-    <slot name="content"></slot>
+    <div class="content">
+      <slot name="content"></slot>
+    </div>
   </div>
   <!-- 下 -->
   <div class="billFormFooter" ref="billFormFooter">
@@ -62,5 +64,23 @@ let contentMaxHeight = computed<string>(() => {
   height: v-bind('contentMaxHeight');
   max-height: v-bind('contentMaxHeight');
   min-height: v-bind('props.contenMinHeight');
+}
+.content {
+  height: 100%;
+  overflow: auto;
+}
+/*滚动条样式*/
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+.content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba#D8D8D8;
+  background: rgba(0, 0, 0, 0.2);
+}
+.content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba#D8D8D8;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1);
 }
 </style>

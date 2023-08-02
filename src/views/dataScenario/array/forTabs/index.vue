@@ -1,19 +1,17 @@
 <template>
   <TableTemplate>
     <template #content>
-      <div style="height: 100%; overflow: auto">
-        <div v-for="i in list">
-          {{ i.name }}
-          <div :id="activeKey[i.name]">
-            <Tabs v-model:activeKey="activeKey[i.name]">
-              <TabPane :key="k.type" :tab="k.name" v-for="k in i.types" style="margin-right: 30px">
-              </TabPane>
-            </Tabs>
-          </div>
+      <div v-for="i in list">
+        {{ i.name }}
+        <div :id="activeKey[i.name]">
+          <Tabs v-model:activeKey="activeKey[i.name]">
+            <TabPane :key="k.type" :tab="k.name" v-for="k in i.types" style="margin-right: 30px">
+            </TabPane>
+          </Tabs>
         </div>
-        <h1 class="text-24px">循环tabs场景,解决方案根据父级节点的唯一键创建不同tab的key</h1>
-        <Codemirror :code="code" />
       </div>
+      <h1 class="text-24px">循环tabs场景,解决方案根据父级节点的唯一键创建不同tab的key</h1>
+      <Codemirror :code="code" />
     </template>
   </TableTemplate>
 </template>
