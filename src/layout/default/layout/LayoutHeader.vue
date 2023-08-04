@@ -57,9 +57,8 @@ import MenuSettingDrawer from '/@/components/Drawer/index.vue'
 import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
 import { useAppStore } from '/@/stores/app'
 import Tabs from '/@/layout/default/tabs/index.vue'
-import router from '/@/router'
+import router, { menuData } from '/@/router'
 import Menu from '/@/layout/default/menu/index.vue'
-import { menuData } from '/@/router'
 
 const appStore = useAppStore()
 

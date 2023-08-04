@@ -3,7 +3,7 @@
   <TableTemplate>
     <template #content>
       <h1 class="text-28px">还没想好写啥</h1>
-      <Codemirror />
+      <!-- <Codemirror /> -->
     </template>
   </TableTemplate>
 </template>
