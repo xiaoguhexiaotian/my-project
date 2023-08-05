@@ -14,8 +14,8 @@ export default defineConfig({
   server: {
     // Listening on all local IPs
     host: true,
-    https: false
-    // port: VITE_PORT,
+    https: false,
+    port: 3100
     // // Load proxy configuration from .env
     // proxy: createProxy(VITE_PROXY)
   },

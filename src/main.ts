@@ -13,6 +13,7 @@ import Antd from 'ant-design-vue'
 import VXETable from 'vxe-table'
 import { routeInit } from './hooks/sys/routeInit'
 import { initProjectConfig } from '/@/hooks/sys/initProjectConfig'
+import { setupDirectives } from '/@/plugins'
 
 const initProject = () => {
   const app = createApp(App)
@@ -21,6 +22,9 @@ const initProject = () => {
   app.use(VXETable)
 
   initProjectConfig()
+
+  // 注册指令
+  setupDirectives(app)
 
   // 注册路由
   app.use(router)
