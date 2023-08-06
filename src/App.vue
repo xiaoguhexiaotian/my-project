@@ -71,8 +71,6 @@ const getCache = computed(() => {
   // return ['dashboard', 'dataScenario-array-doubleTabs']
   return [...tabStore.getCacheList]
 })
-
-console.log(getCache.value)
 </script>
 
 <style lang="less" scoped></style>

@@ -8,7 +8,7 @@ import { message } from 'ant-design-vue'
 interface ElType extends Element {
   copyData?: string | number
   copyIndex?: number | string
-  __handleClick__?: any
+  __handleCopy__?: any
   value?: string
 }
 
@@ -20,7 +20,7 @@ const copy: Directive = {
     el.addEventListener('click', handleCopy)
   },
   beforeUnmount(el: ElType) {
-    el.removeEventListener('click', el.__handleClick__)
+    el.removeEventListener('click', el.__handleCopy__)
   }
 }
 
