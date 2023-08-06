@@ -1,6 +1,6 @@
 <template>
   <div class="box" v-draggable></div>
-  <h1 class="text-24px copy" v-copy="3">拖拽指令</h1>
+  <h1 class="text-24px">拖拽指令</h1>
   <Codemirror :code="code" width="95%" height="600px" :isShowBtn="false" />
 </template>
 <script setup lang="ts">
