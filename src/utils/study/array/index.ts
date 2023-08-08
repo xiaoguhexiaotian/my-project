@@ -1,5 +1,5 @@
 /**
- * 两数相和
+ * @description:两数相和
  * @param {number[]} nums 数组
  * @param {number} target 和
  * @return {number[]}
@@ -16,10 +16,10 @@ export function twoSum(nums, target) {
   return []
 }
 /**
- *
+ * @description:判断对象实例是否存在这个类上
  * @param obj 对象实例
  * @param classFunction 类
- * @returns 对象实例是否存在这个类上
+ * @returns {boolean}
  */
 export function checkIfInstanceOf(obj, classFunction) {
   if (obj === null || classFunction === null || obj === undefined || classFunction === undefined) {
@@ -38,9 +38,10 @@ export function checkIfInstanceOf(obj, classFunction) {
 }
 
 /**
- * 两分查找：目标在数组的索引
+ * @description 两分查找：目标在数组的索引
  * @param nums 数组
  * @param target 目标值
+ * @returns {number}
  */
 export function binarySearch(nums, target) {
   // right是数组最后一个数的下标，num[right]在查找范围内，是左闭右闭区间
@@ -64,10 +65,10 @@ export function binarySearch(nums, target) {
   return -1
 }
 /**
- * 目标值在数组的索引或插入的索引
+ * @description 目标值在数组的索引或应该插入的索引
  * @param nums 数组
  * @param target 目标值
- * @returns 返回索引
+ * @returns {number[]}
  */
 export function interpolationSubscript(nums, target) {
   let left = 0
@@ -90,7 +91,10 @@ export function interpolationSubscript(nums, target) {
 }
 
 /**
- * 找到目标值的初始位置和结束位置
+ * @description 找到目标值的初始位置和结束位置
+ * @param nums 数组
+ * @param target 目标值
+ * @returns {number[]}
  */
 export function searchRange(nums, target) {
   function findFirstOccurrence(target) {
@@ -141,4 +145,21 @@ export function searchRange(nums, target) {
   const lastOccurrence = findLastOccurrence(target)
 
   return [firstOccurrence, lastOccurrence]
+}
+/**
+ * @description: 寻找两个正序数组的中位数
+ * @param {*} nums1 有序数组1
+ * @param {*} nums2 有序数组2
+ * @return {number}
+ */
+export function findMedianSortedArrays(nums1, nums2) {
+  // 合并两个数组并且进行排序
+  const newArray = [...nums1, ...nums2].sort((a, b) => a - b)
+  const index = newArray.length / 2
+  // 数组为奇数时直接取中间的数据
+  if (index % 1 !== 0) {
+    return newArray[Math.floor(index)]
+  } else {
+    return (newArray[Math.floor(index) - 1] + newArray[Math.floor(index)]) / 2
+  }
 }
