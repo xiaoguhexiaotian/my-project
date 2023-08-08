@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts" name="App">
-import { computed, h } from 'vue'
+import { computed, h, watch } from 'vue'
 import Layout from '/@/layout/default/layout/Layout.vue'
 import { usetabStore } from '/@/stores/tab'
 // const compBoxMap = new Map()
@@ -71,6 +71,14 @@ const getCache = computed(() => {
   // return ['dashboard', 'dataScenario-array-doubleTabs']
   return [...tabStore.getCacheList]
 })
+
+watch(
+  () => getCache,
+  () => {
+    console.log(getCache.value)
+  },
+  { deep: true }
+)
 </script>
 
 <style lang="less" scoped></style>

@@ -2,6 +2,7 @@ import { Component } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteLocationNormalized } from 'vue-router'
 import { toArrayTree } from 'xe-utils'
+import ifarme from '/@/router/module/iframe'
 
 export interface Meta {
   id: string
@@ -53,7 +54,7 @@ const routes: any = Object.entries(pages).map(([path, meta]: [string, Meta]) => 
     meta
   }
 })
-
+routes.push(...ifarme)
 // 通过每个page中的id，pid转化为树形菜单结构
 export const menuData: IRoute[] = toArrayTree(routes, {
   parentKey: 'pid',
