@@ -18,11 +18,11 @@ export default defineConfig({
     port: 3100,
     // // Load proxy configuration from .env
     proxy: {
-      // 接口中存在/api字段时,自动代理到3001端口
-      '/api': {
+      // 接口中存在/study字段时,自动代理到3001端口，如果整个项目的接口都需要代理同一个端口，可以直接在axios实例那里设置/study为基础路径
+      '/study': {
         target: 'http://localhost:3001/',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/study/, '')
       }
     }
   },

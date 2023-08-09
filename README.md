@@ -1,4 +1,4 @@
-# my-blog
+# my-study
 
 ## 项目初始化
 

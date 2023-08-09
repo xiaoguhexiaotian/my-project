@@ -37,6 +37,8 @@ const createAxios = (opt?: AxiosRequestConfig) => {
       // 是否携带token
       withToken: true
     },
+    // 请求基础路径
+    baseURL: 'http://localhost:3100/study',
     withCredentials: false
   })
 }

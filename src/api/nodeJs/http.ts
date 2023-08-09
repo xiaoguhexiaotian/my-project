@@ -1,6 +1,6 @@
 import { defhttp } from '/@/utils/http/axios'
 enum Api {
-  message = '/api/hello'
+  message = '/hello'
 }
 
 export const getMessage = () => {

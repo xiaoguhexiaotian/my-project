@@ -7,7 +7,7 @@ import type { Directive, DirectiveBinding } from 'vue'
 const longpress: Directive = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     if (typeof binding.value !== 'function') {
-      throw '必须传入长按需要执行的函数,callback must be a function'
+      throw 'v-longpress指令必须接收一个回调函数'
     }
     // 定义变量
     let pressTimer: any = null
