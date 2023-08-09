@@ -15,9 +15,16 @@ export default defineConfig({
     // Listening on all local IPs
     host: true,
     https: false,
-    port: 3100
+    port: 3100,
     // // Load proxy configuration from .env
-    // proxy: createProxy(VITE_PROXY)
+    proxy: {
+      // 接口中存在/api字段时,自动代理到3001端口
+      '/api': {
+        target: 'http://localhost:3001/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   },
   resolve: {
     alias: [
