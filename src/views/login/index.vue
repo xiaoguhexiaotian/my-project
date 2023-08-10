@@ -40,6 +40,7 @@
           </a-col>
         </a-row>
       </a-form>
+      <a-button @click="test">注册</a-button>
     </template>
   </TableTemplate>
 </template>
@@ -48,7 +49,7 @@ import { reactive, computed } from 'vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
 import axios from 'axios'
-import { login } from '/@/api/login/login'
+import { login, register } from '/@/api/login/login'
 interface FormState {
   username: string
   password: string
@@ -74,6 +75,12 @@ const handleLogin = async () => {
     .catch((err) => {
       console.log(err)
     })
+}
+
+const test = async () => {
+  register({ username: 'ceshi23', password: '123456', email: 'tttt' }).then((res) => {
+    console.log(res)
+  })
 }
 </script>
 <style lang="less" scoped></style>

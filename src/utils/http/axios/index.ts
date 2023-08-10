@@ -81,7 +81,7 @@ const transform: AxiosTransform = {
 const createAxios = (opt?: AxiosRequestConfig) => {
   // console.log('实例化一个axios')
   return new Axios({
-    timeout: 30 * 1000,
+    timeout: 10 * 1000,
     authenticationScheme: '',
     transform,
     // 配置项，下面的选项都可以在独立的接口请求中覆盖
