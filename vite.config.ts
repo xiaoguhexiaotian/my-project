@@ -22,7 +22,10 @@ export default defineConfig({
       '/study': {
         target: 'http://localhost:3001/',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/study/, '')
+        rewrite: (path) => {
+          debugger
+          return path.replace(/^\/study/, '')
+        }
       }
     }
   },

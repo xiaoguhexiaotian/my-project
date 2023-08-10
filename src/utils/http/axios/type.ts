@@ -88,3 +88,12 @@ export interface RequestOptions {
   //是否在标头中发送令牌
   withToken?: boolean
 }
+/**
+ * @description: request method
+ */
+export enum RequestEnum {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE'
+}

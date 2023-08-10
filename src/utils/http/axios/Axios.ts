@@ -53,9 +53,8 @@ export class Axios {
       conf = beforeRequestHook(conf, opt)
     }
     conf.requestOptions = opt
-
     // conf = this.supportFormData(conf)
-
+    // 以上都是针对config的配置的处理
     return new Promise((resolve, reject) => {
       this.axiosInstance
         .request(conf)
@@ -70,6 +69,7 @@ export class Axios {
             }
             return
           }
+          console.log(res)
           resolve(res as unknown as Promise<T>)
         })
         .catch((e: Error) => {
