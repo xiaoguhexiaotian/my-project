@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios'
 import { isString } from 'xe-utils'
 import { Axios } from './Axios'
-import { RequestEnum } from '/@/utils/http/axios/type'
+import { AxiosTransform, RequestEnum } from '/@/utils/http/axios/type'
 
 function joinTimestamp(join: boolean, restful = false): string | object {
   if (!join) {
@@ -13,8 +13,8 @@ function joinTimestamp(join: boolean, restful = false): string | object {
   }
   return { _t: now }
 }
-
-const transform = {
+// 请求拦截响应拦截方法集合
+const transform: AxiosTransform = {
   // 请求之前处理config
   beforeRequestHook: (config, options) => {
     const { apiUrl, joinPrefix, joinParamsToUrl, formatDate, joinTime = true, urlPrefix } = options
@@ -56,6 +56,22 @@ const transform = {
       }
     }
     return config
+  },
+  // 响应数据处理
+  transformResponseHook: (res, requestOptions) => {
+    const { isTransformResponse, isReturnNativeResponse } = requestOptions
+    // 是否返回原生响应头 比如：需要获取响应头时使用该属性
+    if (isReturnNativeResponse) {
+      return res
+    }
+    // 不处理的情况下直接返回数据
+    if (!isTransformResponse) {
+      return res.data
+    }
+    const { data } = res
+    if (!data) {
+      return Promise.reject('请求出错,请稍后重试')
+    }
   }
 }
 
@@ -73,7 +89,7 @@ const createAxios = (opt?: AxiosRequestConfig) => {
       // 是否返回原生响应头 比如：需要获取响应头时使用该属性
       isReturnNativeResponse: false,
       // 需要对返回数据进行处理
-      isTransformResponse: true,
+      isTransformResponse: false,
       // post请求的时候添加参数到url
       joinParamsToUrl: false,
       // 格式化提交参数时间

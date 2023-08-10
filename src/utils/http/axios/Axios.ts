@@ -24,24 +24,25 @@ export class Axios {
     // console.log('设置拦截器')
   }
 
-  get<T = any>(config: AxiosRequestConfig, options?): Promise<T> {
+  get<T = any>(config: CreateAxiosOptions, options?): Promise<T> {
     return this.request({ ...config, method: 'GET' }, options)
   }
 
-  post<T = any>(config: AxiosRequestConfig, options?): Promise<T> {
+  post<T = any>(config: CreateAxiosOptions, options?): Promise<T> {
     return this.request({ ...config, method: 'POST' }, options)
   }
 
-  put<T = any>(config: AxiosRequestConfig, options?): Promise<T> {
+  put<T = any>(config: CreateAxiosOptions, options?): Promise<T> {
     return this.request({ ...config, method: 'PUT' }, options)
   }
 
-  delete<T = any>(config: AxiosRequestConfig, options?): Promise<T> {
+  delete<T = any>(config: CreateAxiosOptions, options?): Promise<T> {
     return this.request({ ...config, method: 'DELETE' }, options)
   }
 
   request<T = any>(config: CreateAxiosOptions, options?): Promise<T> {
     let conf = cloneDeep(config)
+    console.log(conf)
     const transform = this.getTransform()
 
     const { requestOptions } = this.options
@@ -62,14 +63,13 @@ export class Axios {
           if (transformResponseHook && isFunction(transformResponseHook)) {
             try {
               const ret = transformResponseHook(res, opt)
-              config.success && config.success(res.data)
+              config.success && config.success(ret)
               resolve(ret)
             } catch (err) {
               reject(err || new Error('request error!'))
             }
             return
           }
-          console.log(res)
           resolve(res as unknown as Promise<T>)
         })
         .catch((e: Error) => {

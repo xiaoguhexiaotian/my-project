@@ -20,13 +20,14 @@ export interface Result<T = any> {
 //  用于定义请求数据和响应数据的转换函数。这些函数允许在发送请求之前对请求数据进行处理，以及在接收响应后对响应数据进行处理。在发送和接收数据时进行自定义处理，例如数据格式转换、数据加工等。
 export abstract class AxiosTransform {
   /**
-   * @description: Process configuration before request
-   * @description: Process configuration before request
+   * @description: 请求前的流程配置
    */
   beforeRequestHook?: (config: AxiosRequestConfig, options: RequestOptions) => AxiosRequestConfig
 
   /**
-   * @description: Request successfully processed
+   * @description: 处理响应数据。如果数据不是预期格式，可直接抛出错误
+   * @param res 响应数据
+   * @param options axios个性配置 requestOptions
    */
   transformResponseHook?: (res: AxiosResponse<Result>, options: RequestOptions) => any
 

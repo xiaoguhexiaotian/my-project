@@ -68,6 +68,12 @@ const span = {
 }
 const handleLogin = async () => {
   login(formState)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 </script>
 <style lang="less" scoped></style>
