@@ -78,7 +78,7 @@ const handleLogin = async () => {
 }
 
 const test = async () => {
-  register({ username: 'ceshi23', password: '123456', email: 'tttt' }).then((res) => {
+  register({ username: 'admin', password: '123456' }).then((res) => {
     console.log(res)
   })
 }
