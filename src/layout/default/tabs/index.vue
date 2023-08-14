@@ -30,6 +30,10 @@ import router from '/@/router'
 const tabStore = usetabStore()
 const activeKey = ref()
 
+// 获取需要展示的tab列表
+const tabList = computed(() => {
+  return tabStore.getTabList.filter((item) => !item.meta?.hideTab && !item.meta.isHome)
+})
 // 获取首页路由信息，首页始终展示
 // 类型问题需要解决/或者直接拿到route类型
 const homeRoute: any = router.getRoutes().find((i) => i.meta.isHome)
@@ -43,14 +47,13 @@ listenerRouteChange((route: RouteLocationNormalized) => {
   const { fullPath } = route
   activeKey.value = fullPath
   // tabList中不存在且不是首页的情况下才添加
-  if (!tabList.value.some((i) => i.fullPath == fullPath) && !route.meta.isHome) {
+  if (
+    !tabList.value.some((i) => i.fullPath == fullPath) &&
+    !route.meta.isHome &&
+    route.path !== '/login'
+  ) {
     tabStore.addTab(route)
   }
-})
-
-// 获取需要展示的tab列表
-const tabList = computed(() => {
-  return tabStore.getTabList.filter((item) => !item.meta?.hideTab && !item.meta.isHome)
 })
 
 // 点击切换

@@ -52,6 +52,7 @@ import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
 import { login, register } from '/@/api/login/login'
 import { createLocalStorage } from '/@/utils/cache'
 import { useUserStore } from '/@/stores/user'
+import router from '/@/router'
 interface FormState {
   username: string
   password: string
@@ -78,6 +79,7 @@ const handleLogin = async () => {
       const token = result
       localStorage.set('TOKEN', token)
       userStore.setToken(token)
+      router.push({ path: '/dashboard' })
     })
     .catch((err) => {
       console.log(err)

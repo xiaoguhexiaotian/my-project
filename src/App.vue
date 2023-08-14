@@ -1,15 +1,17 @@
 <template>
-  <Layout>
-    <template #body>
-      <RouterView>
-        <template #default="{ Component, route }">
-          <keep-alive :include="getCache">
+  <RouterView>
+    <template #default="{ Component, route }">
+      <!-- 只有非登录页才嵌套在模板中 -->
+      <keep-alive :include="getCache">
+        <Layout v-if="route.path !== '/login'">
+          <template #body>
             <component :is="compBox(route.fullPath, Component)" :key="route.fullPath" />
-          </keep-alive>
-        </template>
-      </RouterView>
+          </template>
+        </Layout>
+        <component v-else :is="Component" :key="route.fullPath" />
+      </keep-alive>
     </template>
-  </Layout>
+  </RouterView>
 </template>
 
 <script setup lang="ts" name="App">
