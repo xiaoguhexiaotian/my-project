@@ -1,7 +1,13 @@
 import { AxiosRequestConfig } from 'axios'
 import { isString } from 'xe-utils'
 import { Axios } from './Axios'
-import { AxiosTransform, RequestEnum } from '/@/utils/http/axios/type'
+import { useUserStore } from '/@/stores/user'
+import {
+  AxiosTransform,
+  ConfigEnum,
+  CreateAxiosOptions,
+  RequestEnum
+} from '/@/utils/http/axios/type'
 
 function joinTimestamp(join: boolean, restful = false): string | object {
   if (!join) {
@@ -72,6 +78,21 @@ const transform: AxiosTransform = {
     if (!data) {
       return Promise.reject('请求出错,请稍后重试')
     }
+  },
+  // 请求拦截器
+  requestInterceptors: (config: CreateAxiosOptions, options) => {
+    // 请求之前处理config
+    const userStore = useUserStore()
+    const token = userStore.getToken
+    console.log(token, config?.requestOptions?.withToken !== false)
+    if (token && config?.requestOptions?.withToken !== false) {
+      // 请求头添加上token
+      config.headers!.Authorization = options.authenticationScheme
+        ? `${options.authenticationScheme} ${token}`
+        : token
+      config.headers![ConfigEnum.TOKEN] = token
+    }
+    return config
   }
 }
 
@@ -110,7 +131,7 @@ const createAxios = (opt?: AxiosRequestConfig) => {
       // 忽略重复请求
       ignoreCancelToken: true,
       // 是否携带token
-      withToken: false
+      withToken: true
     }
     // 请求基础路径
     // baseURL: ''

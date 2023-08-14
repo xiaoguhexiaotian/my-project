@@ -21,7 +21,21 @@ export class Axios {
   }
 
   setupInterceptors() {
-    // console.log('设置拦截器')
+    const transform = this.getTransform()
+    if (!transform) {
+      return
+    }
+    const { requestInterceptors } = transform
+
+    // 请求侦听器配置处理
+    this.axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
+      // @ts-ignore
+      const { ignoreCancelToken } = config.requestOptions
+      if (requestInterceptors && isFunction(requestInterceptors)) {
+        config = requestInterceptors(config, this.options)
+      }
+      return config
+    }, undefined)
   }
 
   get<T = any>(config: CreateAxiosOptions, options?): Promise<T> {

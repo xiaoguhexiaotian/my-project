@@ -6,6 +6,7 @@ export interface CreateAxiosOptions extends AxiosRequestConfig {
   transform?: AxiosTransform
   requestOptions?: RequestOptions
   success?: (data: any) => void
+  headers?: { [key: string]: string }
 }
 // 响应接口参数
 export interface Result<T = any> {
@@ -97,4 +98,26 @@ export enum RequestEnum {
   POST = 'POST',
   PUT = 'PUT',
   DELETE = 'DELETE'
+}
+/**
+ * 请求header
+ * @description:  contentTyp
+ */
+export enum ConfigEnum {
+  // TOKEN
+  TOKEN = 'X-Access-Token',
+  // 签名
+  SIGN = 'X-Sign',
+  // TIMESTAMP
+  TIMESTAMP = 'X-Timestamp',
+  // 租户id
+  TENANT_ID = 'X-Tenant-ID',
+  // 平台ID
+  PLATFORM_ID = 'X-Platform-ID',
+  // 平台类型
+  PLATFORM_TYPE = 'X-Platform-Type',
+  // 版本
+  VERSION = 'X-Version',
+  // 客户端信息
+  CLIENT_INFO = 'X-Client-Info'
 }

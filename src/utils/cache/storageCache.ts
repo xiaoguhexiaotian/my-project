@@ -57,6 +57,7 @@ export const createStorage = ({
         const decVal = val
         const data = JSON.parse(decVal)
         const { value, expire } = data
+        // 当前过期时间为null或者undefind或者大于当前时间时，才返回数据，否则删除缓存
         if (isNullOrUnDef(expire) || expire >= new Date().getTime()) {
           return value
         }

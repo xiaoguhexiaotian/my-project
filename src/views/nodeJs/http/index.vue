@@ -8,7 +8,7 @@
 import { reactive } from 'vue'
 import { getMessage } from '/@/api/nodeJs/http'
 import { cloneDeep } from 'lodash'
-import { createSessionStorage } from '/@/utils/cache/index'
+import { createLocalStorage } from '/@/utils/cache/index'
 
 const http = async () => {
   const res = await getMessage()
@@ -16,7 +16,7 @@ const http = async () => {
   test1.data = cloneDeep(test2.data)
   test1.data.name = 'test1111111111'
   console.log(test1.data, test2.data)
-  sessionStorage.set('test', test1)
+  localStorage.set('test', test1)
 }
 // 读取文件信息
 function check(e) {
@@ -39,8 +39,8 @@ const test2 = reactive({
   }
 })
 
-const sessionStorage = createSessionStorage()
-console.log(sessionStorage)
+const localStorage = createLocalStorage()
+console.log(localStorage)
 </script>
 
 <style lang="less" scoped></style>

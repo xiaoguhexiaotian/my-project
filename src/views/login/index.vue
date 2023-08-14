@@ -48,13 +48,16 @@
 import { reactive, computed } from 'vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
-import axios from 'axios'
+
 import { login, register } from '/@/api/login/login'
+import { createLocalStorage } from '/@/utils/cache'
+import { useUserStore } from '/@/stores/user'
 interface FormState {
   username: string
   password: string
 }
-
+const localStorage = createLocalStorage()
+const userStore = useUserStore()
 const formState = reactive<FormState>({
   username: '',
   password: ''
@@ -71,6 +74,10 @@ const handleLogin = async () => {
   login(formState)
     .then((res) => {
       console.log(res)
+      const { result } = res
+      const token = result
+      localStorage.set('TOKEN', token)
+      userStore.setToken(token)
     })
     .catch((err) => {
       console.log(err)
