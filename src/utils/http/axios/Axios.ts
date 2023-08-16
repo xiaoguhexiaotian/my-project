@@ -4,6 +4,8 @@ import { isFunction } from 'xe-utils'
 import { cloneDeep } from 'lodash'
 import { CreateAxiosOptions } from '/@/utils/http/axios/type'
 import { message } from 'ant-design-vue'
+import router from '/@/router'
+import { createLocalStorage } from '/@/utils/cache'
 
 export class Axios {
   // private 私有
@@ -96,6 +98,16 @@ export class Axios {
           }
           if (axios.isAxiosError(e)) {
             // 在此处重写来自axios的错误消息
+            // 401报错说明token已经失效
+            // 重定向到登录页且清除缓存token
+            if (String(e).includes('401')) {
+              const localStorage = createLocalStorage()
+              message.error('登录已过期请重新登录')
+              router.replace('/login')
+              localStorage.remove('TOKEN')
+              reject(e)
+              return
+            }
             String(e).includes('500') && message.error('服务器连接失败,请稍后重试')
           }
           reject(e)

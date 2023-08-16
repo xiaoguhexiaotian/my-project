@@ -50,10 +50,13 @@ const columns = [
 // 列表查询
 const search = async () => {
   const res = await getUserList()
-  if (res.success) {
-    dataSource.value = res.result.records
+  try {
+    if (res.success) {
+      dataSource.value = res.result.records
+    }
+  } catch (e) {
+    console.log(e)
   }
-  console.log(res)
 }
 // 删除
 const handleDelete = async (id) => {

@@ -10,15 +10,14 @@ enum Api {
  * @param res 响应数据
  */
 const success = (res) => {
-  console.log(res)
-  res.success ? message.success(res.message) : message.error(res.message)
+  res.success && message.success(res.message)
 }
-// 列表查询
+// 用户列表查询
 export const getUserList = () => {
   return defhttp.get({ url: Api.userList })
 }
 
-// 列表查询
+// 用户删除接口
 export const delUser = (params: { id: string }) => {
   return defhttp.post({ url: Api.deleteUser, params, success })
 }
