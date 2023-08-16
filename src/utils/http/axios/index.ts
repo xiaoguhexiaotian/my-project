@@ -1,3 +1,4 @@
+import { message } from 'ant-design-vue'
 import { AxiosRequestConfig } from 'axios'
 import { isString } from 'xe-utils'
 import { Axios } from './Axios'
@@ -76,15 +77,18 @@ const transform: AxiosTransform = {
     }
     const { data } = res
     if (!data) {
-      return Promise.reject('请求出错,请稍后重试')
+      // debugger
+      // 使用vite的proxy代理后,在后台服务器没有启动的情况下,http协议的状态码始终为200且没有返回值,正常逻辑应该是返回404状态码,代理问题,尚未解决
+      message.error('服务器异常,请稍后重试')
+      return false
     }
+    return data
   },
   // 请求拦截器
   requestInterceptors: (config: CreateAxiosOptions, options) => {
     // 请求之前处理config
     const userStore = useUserStore()
     const token = userStore.getToken
-    console.log(token, config?.requestOptions?.withToken !== false)
     if (token && config?.requestOptions?.withToken !== false) {
       // 请求头添加上token
       config.headers!.Authorization = options.authenticationScheme
@@ -100,9 +104,8 @@ const transform: AxiosTransform = {
  * 实例化axios方法
  */
 const createAxios = (opt?: AxiosRequestConfig) => {
-  // console.log('实例化一个axios')
   return new Axios({
-    timeout: 10 * 1000,
+    timeout: 30 * 1000,
     authenticationScheme: '',
     transform,
     // 配置项，下面的选项都可以在独立的接口请求中覆盖
@@ -110,7 +113,7 @@ const createAxios = (opt?: AxiosRequestConfig) => {
       // 是否返回原生响应头 比如：需要获取响应头时使用该属性
       isReturnNativeResponse: false,
       // 需要对返回数据进行处理
-      isTransformResponse: false,
+      isTransformResponse: true,
       // post请求的时候添加参数到url
       joinParamsToUrl: false,
       // 格式化提交参数时间

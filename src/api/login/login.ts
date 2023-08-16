@@ -21,7 +21,7 @@ interface Register {
  * @param res 响应数据
  */
 const success = (res) => {
-  res.success ? message.success(res.message) : message.error(res.message)
+  res.success && message.success(res.message)
 }
 // 登录接口
 export const login = (params: Login) => {

@@ -3,6 +3,7 @@ import type { AxiosRequestConfig, AxiosInstance } from 'axios'
 import { isFunction } from 'xe-utils'
 import { cloneDeep } from 'lodash'
 import { CreateAxiosOptions } from '/@/utils/http/axios/type'
+import { message } from 'ant-design-vue'
 
 export class Axios {
   // private 私有
@@ -56,7 +57,6 @@ export class Axios {
 
   request<T = any>(config: CreateAxiosOptions, options?): Promise<T> {
     let conf = cloneDeep(config)
-    console.log(conf)
     const transform = this.getTransform()
 
     const { requestOptions } = this.options
@@ -68,7 +68,6 @@ export class Axios {
       conf = beforeRequestHook(conf, opt)
     }
     conf.requestOptions = opt
-    // conf = this.supportFormData(conf)
     // 以上都是针对config的配置的处理
     return new Promise((resolve, reject) => {
       this.axiosInstance
@@ -79,6 +78,10 @@ export class Axios {
               const ret = transformResponseHook(res, opt)
               config.success && config.success(ret)
               resolve(ret)
+              // 状态为200但是success为false的情况下提示用户
+              if (!ret.success && ret.message) {
+                message.warning(ret.message)
+              }
             } catch (err) {
               reject(err || new Error('request error!'))
             }
@@ -93,6 +96,7 @@ export class Axios {
           }
           if (axios.isAxiosError(e)) {
             // 在此处重写来自axios的错误消息
+            String(e).includes('500') && message.error('服务器连接失败,请稍后重试')
           }
           reject(e)
         })

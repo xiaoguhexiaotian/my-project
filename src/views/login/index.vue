@@ -74,12 +74,13 @@ const span = {
 const handleLogin = async () => {
   login(formState)
     .then((res) => {
-      console.log(res)
-      const { result } = res
-      const token = result
-      localStorage.set('TOKEN', token)
-      userStore.setToken(token)
-      router.push({ path: '/dashboard' })
+      if (res.success && res.result) {
+        const { result } = res
+        const token = result
+        localStorage.set('TOKEN', token)
+        userStore.setToken(token)
+        router.push({ path: '/dashboard' })
+      }
     })
     .catch((err) => {
       console.log(err)

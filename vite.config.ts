@@ -15,17 +15,24 @@ export default defineConfig({
     // Listening on all local IPs
     host: true,
     https: false,
-    port: 3100,
+    port: 3101,
     // // Load proxy configuration from .env
     proxy: {
       // 接口中存在/study字段时,自动代理到3001端口，如果整个项目的接口都需要代理同一个端口，可以直接在axios实例那里设置/study为基础路径
       '/study': {
-        target: 'http://localhost:3001/',
+        target: 'http://127.0.0.1:3001/',
         changeOrigin: true,
         rewrite: (path) => {
-          debugger
+          // 清除前端接口中的study字段,因为在后台的路由定义中实际上是没有study的
           return path.replace(/^\/study/, '')
         }
+        // 可以拦截接口中存在study字段的接口,手动修改http状态码,手动返回数据
+        // bypass: (req, res) => {
+        //   res.writeHead(500, {
+        //     'Content-Type': 'text/plain'
+        //   })
+        //   res.end('Proxy Error: ')
+        // }
       }
     }
   },
