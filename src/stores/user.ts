@@ -1,13 +1,21 @@
 import { defineStore } from 'pinia'
 import { getCacheToken } from '/@/hooks/sys/routeInit'
+declare type Nullable<T> = T | null
 interface UserInfo {
+  userId: string
+  username: string
+  isManager: string
+}
+interface UserState {
   token: string
+  userInfo: Nullable<UserInfo>
 }
 
 export const useUserStore = defineStore({
   id: 'user-info',
-  state: (): UserInfo => ({
-    token: ''
+  state: (): UserState => ({
+    token: '',
+    userInfo: null
   }),
   getters: {
     getToken(): string {

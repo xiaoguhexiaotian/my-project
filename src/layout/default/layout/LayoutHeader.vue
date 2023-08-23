@@ -4,7 +4,7 @@
       <span v-if="menuSetting.type == MenuTypeEnum.TOP" :class="`${prefixCls}-left`">
         <Menu :menuData="menuData" />
       </span>
-      <span @click="jump">header</span>
+      <span>header</span>
       <Button type="text" shape="circle" @click="openSetting">
         <template #icon>
           <SettingOutlined />
@@ -57,7 +57,7 @@ import MenuSettingDrawer from '/@/components/Drawer/index.vue'
 import { MenuTypeEnum } from '/@/enums/MenuTypeEnum'
 import { useAppStore } from '/@/stores/app'
 import Tabs from '/@/layout/default/tabs/index.vue'
-import router, { menuData } from '/@/router'
+import { menuData } from '/@/router'
 import Menu from '/@/layout/default/menu/index.vue'
 
 const appStore = useAppStore()
@@ -93,12 +93,6 @@ const settingMenuType = (type) => {
  */
 const reset = () => {
   appStore.setProjectConfig(Object.assign(menuSetting, { type: MenuTypeEnum.TOP }))
-}
-/**
- * 路由跳转
- */
-const jump = () => {
-  router.push({ path: '/dataScenario/array/doubleTabs' })
 }
 </script>
 

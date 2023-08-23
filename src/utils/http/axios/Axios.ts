@@ -108,7 +108,7 @@ export class Axios {
               reject(e)
               return
             }
-            String(e).includes('500') && message.error('服务器连接失败,请稍后重试')
+            String(e).includes('500') && message.error('服务器异常,请稍后重试')
           }
           reject(e)
         })
