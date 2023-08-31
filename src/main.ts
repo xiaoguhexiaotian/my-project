@@ -12,6 +12,7 @@ import router from './router'
 import Antd from 'ant-design-vue'
 import VXETable from 'vxe-table'
 import { routeInit } from './hooks/sys/routeInit'
+import { registerGlobComp } from '/@/hooks/sys/initComponents'
 import { initProjectConfig } from '/@/hooks/sys/initProjectConfig'
 import { setupDirectives } from '/@/plugins'
 
@@ -22,6 +23,9 @@ const initProject = () => {
   app.use(VXETable)
 
   initProjectConfig()
+
+  // 初始化注册全局组件
+  registerGlobComp(app)
 
   // 注册指令
   setupDirectives(app)
