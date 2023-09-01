@@ -4,7 +4,6 @@
   <Codemirror :code="code" width="95%" height="600px" :isShowBtn="false" />
 </template>
 <script setup lang="ts">
-import Codemirror from '/@/components/Codemirror/index.vue'
 import { ref } from 'vue'
 
 const code = ref(`import type { Directive } from 'vue'

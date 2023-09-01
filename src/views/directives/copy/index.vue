@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { Button, Textarea } from 'ant-design-vue'
 import { ref } from 'vue'
-import Codemirror from '/@/components/Codemirror/index.vue'
+
 const data = ref('这是一段被复制的话')
 const data2 = ref(10)
 

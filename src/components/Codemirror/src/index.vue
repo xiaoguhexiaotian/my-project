@@ -14,6 +14,11 @@
     <Button type="primary" @click="handle" v-if="isShowBtn">执行</Button>
   </div>
 </template>
+<script lang="ts">
+export default {
+  name: 'Codemirror'
+}
+</script>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import CodeMirror from 'vue-codemirror6'

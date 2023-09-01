@@ -11,7 +11,6 @@
   </BodyLayout>
 </template>
 <script lang="ts" setup>
-import Codemirror from '/@/components/Codemirror/index.vue'
 import { ref } from 'vue'
 
 // 代码部分

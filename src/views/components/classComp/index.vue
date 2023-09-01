@@ -12,7 +12,6 @@
   </BodyLayout>
 </template>
 <script lang="ts" setup>
-import Codemirror from '/@/components/Codemirror/index.vue'
 import { ref } from 'vue'
 
 import { Dom } from '/@/views/components/classComp/components/classDom'

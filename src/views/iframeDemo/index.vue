@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { Button } from 'ant-design-vue'
-import Codemirror from '/@/components/Codemirror/index.vue'
+
 const parentCuont = ref(1)
 const handleMessage = (event: any) => {
   const data = event.data.data

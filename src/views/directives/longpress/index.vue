@@ -9,7 +9,6 @@
 </template>
 <script setup lang="ts">
 import { message } from 'ant-design-vue'
-import Codemirror from '/@/components/Codemirror/index.vue'
 
 import { ref } from 'vue'
 

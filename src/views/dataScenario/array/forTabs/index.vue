@@ -17,7 +17,7 @@
 </template>
 <script lang="ts" setup>
 import { Tabs, TabPane } from 'ant-design-vue'
-import Codemirror from '/@/components/Codemirror/index.vue'
+
 import { ref, watch } from 'vue'
 
 const list = [
@@ -85,7 +85,7 @@ const code = ref(`
 </template>
 <script lang="ts" setup>
 import { Tabs, TabPane } from 'ant-design-vue'
-import Codemirror from '/@/components/Codemirror/index.vue'
+
 import { ref, watch } from 'vue'
 
 const list = [
