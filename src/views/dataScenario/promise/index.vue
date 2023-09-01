@@ -1,5 +1,5 @@
 <template>
-  <TableTemplate>
+  <BodyLayout>
     <template #content>
       <h1 class="text-24px">链式调用会进入微任务排队等待</h1>
       <Codemirror :code="code" height="600px" />
@@ -8,12 +8,11 @@
       <h1 class="text-24px">Promise与async await</h1>
       <Codemirror :code="code3" height="600px" />
     </template>
-  </TableTemplate>
+  </BodyLayout>
 </template>
 <script lang="ts" setup>
 import Codemirror from '/@/components/Codemirror/index.vue'
 import { ref } from 'vue'
-import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
 
 // 代码部分
 const code = ref(`function test (){

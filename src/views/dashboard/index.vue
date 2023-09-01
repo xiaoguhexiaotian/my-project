@@ -1,6 +1,6 @@
 <template>
   <!-- <div :class="`${prefixCls}`">首页</div> -->
-  <TableTemplate>
+  <BodyLayout>
     <template #content>
       <ChenInput />
       <h1 class="text-28px">还没想好写啥</h1>
@@ -19,12 +19,12 @@
         </template>
       </a-table>
     </template>
-  </TableTemplate>
+  </BodyLayout>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
+
 import { useDesign } from '/@/hooks/useDesign'
 import { getUserList, delUser } from '/@/api/user/user'
 

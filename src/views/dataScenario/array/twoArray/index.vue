@@ -1,5 +1,5 @@
 <template>
-  <TableTemplate>
+  <BodyLayout>
     <template #content>
       <h1 class="text-24px">双数组对象数组方法操作</h1>
       <Codemirror :code="code" height="600px" width="1000px" />
@@ -8,12 +8,11 @@
       <h1 class="text-24px">双普通数组Set方法操作</h1>
       <Codemirror :code="code3" height="600px" width="1000px" />
     </template>
-  </TableTemplate>
+  </BodyLayout>
 </template>
 <script lang="ts" setup>
 import Codemirror from '/@/components/Codemirror/index.vue'
 import { ref } from 'vue'
-import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
 
 const code = ref(`function test() {
   let a = [

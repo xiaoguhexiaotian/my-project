@@ -1,16 +1,16 @@
 <template>
-  <TableTemplate>
+  <BodyLayout>
     <template #content>
       <div class="box" v-longpress="longpress"></div>
       <h1 class="text-24px">长按指令</h1>
       <Codemirror :code="code" width="95%" height="600px" :isShowBtn="false" />
     </template>
-  </TableTemplate>
+  </BodyLayout>
 </template>
 <script setup lang="ts">
 import { message } from 'ant-design-vue'
 import Codemirror from '/@/components/Codemirror/index.vue'
-import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
+
 import { ref } from 'vue'
 
 const longpress = () => {

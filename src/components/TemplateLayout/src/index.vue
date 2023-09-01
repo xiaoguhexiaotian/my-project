@@ -19,6 +19,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'BodyLayout'
+}
+</script>
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { useElementBounding, useWindowSize } from '@vueuse/core'

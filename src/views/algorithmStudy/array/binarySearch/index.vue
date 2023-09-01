@@ -1,5 +1,5 @@
 <template>
-  <TableTemplate>
+  <BodyLayout>
     <template #content>
       <h1 class="text-24px">排序数组二分查找</h1>
       <Codemirror :code="code" height="600px" width="95%" />
@@ -8,12 +8,11 @@
       <h1 class="text-24px">在排序数组中查找元素的第一个和最后一个位置</h1>
       <Codemirror :code="code3" height="600px" width="95%" />
     </template>
-  </TableTemplate>
+  </BodyLayout>
 </template>
 <script lang="ts" setup>
 import Codemirror from '/@/components/Codemirror/index.vue'
 import { ref } from 'vue'
-import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
 
 const code = ref(`function test() {
 

@@ -1,5 +1,5 @@
 <template>
-  <TableTemplate>
+  <BodyLayout>
     <template #content>
       输入框：<ClassInput /> 表单：<ClassFormDom />
       <InputDom />
@@ -9,12 +9,12 @@
       <h1 class="text-24px">组件库代码</h1>
       <Codemirror :code="code2" height="600px" width="1000px" :isShowBtn="false" />
     </template>
-  </TableTemplate>
+  </BodyLayout>
 </template>
 <script lang="ts" setup>
 import Codemirror from '/@/components/Codemirror/index.vue'
 import { ref } from 'vue'
-import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
+
 import { Dom } from '/@/views/components/classComp/components/classDom'
 
 // 页面信息

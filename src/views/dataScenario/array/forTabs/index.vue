@@ -1,5 +1,5 @@
 <template>
-  <TableTemplate>
+  <BodyLayout>
     <template #content>
       <div v-for="i in list">
         {{ i.name }}
@@ -13,13 +13,12 @@
       <h1 class="text-24px">循环tabs场景,解决方案根据父级节点的唯一键创建不同tab的key</h1>
       <Codemirror :code="code" />
     </template>
-  </TableTemplate>
+  </BodyLayout>
 </template>
 <script lang="ts" setup>
 import { Tabs, TabPane } from 'ant-design-vue'
 import Codemirror from '/@/components/Codemirror/index.vue'
 import { ref, watch } from 'vue'
-import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
 
 const list = [
   {

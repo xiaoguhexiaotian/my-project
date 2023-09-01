@@ -1,5 +1,5 @@
 <template>
-  <TableTemplate>
+  <BodyLayout>
     <template #content>
       <iframe width="100%" height="50%" src="http://127.0.0.1:5174/" />
       <p>子页面传递的信息:{{ sonInfo && sonInfo.message }}</p>
@@ -10,11 +10,10 @@
       <p><b>子页面</b></p>
       <Codemirror width="95%" height="600px" :code="code2" :isShowBtn="false" />
     </template>
-  </TableTemplate>
+  </BodyLayout>
 </template>
 
 <script lang="ts" setup>
-import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
 import { ref, onMounted } from 'vue'
 import { Button } from 'ant-design-vue'
 import Codemirror from '/@/components/Codemirror/index.vue'
@@ -52,18 +51,18 @@ onMounted(() => {
 })
 
 const code = ref(`<template>
-  <TableTemplate>
+  <BodyLayout>
     <template #content>
       <iframe width="100%" height="50%" src="http://127.0.0.1:5174/" />
       <p>子页面传递的信息:{{ sonInfo && sonInfo.message }}</p>
       <p>计数器:{{ sonInfo && sonInfo.cuont }}</p>
       <Button @click="postMessage('主动传递')">向iframe页面传递信息</Button>
     </template>
-  </TableTemplate>
+  </BodyLayout>
 </template>
 
 <script lang="ts" setup>
-import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
+
 import { ref, onMounted } from 'vue'
 import { Button } from 'ant-design-vue'
 const parentCuont = ref(1)

@@ -1,5 +1,5 @@
 <template>
-  <TableTemplate>
+  <BodyLayout>
     <template #content>
       <a-form :model="formState" name="normal_login" class="login-form">
         <a-row>
@@ -42,12 +42,11 @@
       </a-form>
       <a-button @click="test">注册</a-button>
     </template>
-  </TableTemplate>
+  </BodyLayout>
 </template>
 <script setup lang="ts">
 import { reactive, computed } from 'vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
-import TableTemplate from '/@/components/TemplateLayout/tableTemplate.vue'
 
 import { login, register } from '/@/api/login/login'
 import { createLocalStorage } from '/@/utils/cache'
