@@ -1,5 +1,5 @@
 <template>
-  <ChenInput />
+  <ChenAInput />
 </template>
 
 <script lang="ts" setup>

@@ -1,11 +1,11 @@
 import { App } from 'vue'
-import { ChenInput } from '/@/components/ChenInput'
+import { ChenAInput } from '/@/components/ChenAInput'
 import { Codemirror } from '/@/components/Codemirror'
 import { BodyLayout } from '/@/components/TemplateLayout'
 
 export const registerGlobComp = (app: App) => {
   // 对应的组件必须声明组件name
-  ChenInput.install!(app)
+  ChenAInput.install!(app)
   BodyLayout.install!(app)
   Codemirror.install!(app)
 }

@@ -2,7 +2,6 @@
   <!-- <div :class="`${prefixCls}`">首页</div> -->
   <BodyLayout>
     <template #content>
-      <ChenInput />
       <h1 class="text-28px">还没想好写啥</h1>
       <a-button @click="search">查询</a-button>
       <a-table :dataSource="dataSource" :columns="columns">
