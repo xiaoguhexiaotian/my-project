@@ -1,6 +1,6 @@
 export default {
-  title: 'input', // 标题
-  id: 'antDesignVueCompInput',
+  title: 'count计时器', // 标题
+  id: 'antDesignVueCompCount',
   pid: 'antDesignVueComp',
   icon: 'chen-bawangcan',
   isLowestLevel: true
