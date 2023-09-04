@@ -17,7 +17,7 @@ const props = defineProps({
   startText: propTypes.string.def('开始倒计时') // 计时开始文本
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'start'])
 
 const loading = ref(false)
 
@@ -43,6 +43,7 @@ async function handleStart() {
   } else {
     start()
   }
+  emit('start')
 }
 // 当v-model双向绑定的值为true时，则自动开始计时
 props.modelValue && start()
