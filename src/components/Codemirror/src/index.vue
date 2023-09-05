@@ -12,7 +12,7 @@
       scrollbarStyle="simple"
     />
     <Button class="copy-btn" @click="copy">copy</Button>
-    <Button type="primary" @click="handle" v-if="isShowBtn">执行</Button>
+    <Button class="copy-btn2" type="primary" @click="handle" v-if="isShowBtn">执行</Button>
   </div>
 </template>
 <script lang="ts">
@@ -96,7 +96,8 @@ onMounted(() => {
 <style lang="less">
 .main {
   position: relative;
-  .copy-btn {
+  .copy-btn,
+  .copy-btn2 {
     position: absolute;
     top: 5%;
     right: 10%;
@@ -107,6 +108,9 @@ onMounted(() => {
       border-color: #fff;
       color: #fff;
     }
+  }
+  .copy-btn2 {
+    top: 15%;
   }
 }
 /* required! */
