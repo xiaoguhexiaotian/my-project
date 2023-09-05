@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main" :style="{ height: height, width: width }">
     <CodeMirror
       class="codeMirror"
       placeholder="Please enter the code..."
@@ -11,6 +11,7 @@
       :extensions="extensions"
       scrollbarStyle="simple"
     />
+    <Button class="copy-btn" @click="copy">copy</Button>
     <Button type="primary" @click="handle" v-if="isShowBtn">执行</Button>
   </div>
 </template>
@@ -32,7 +33,7 @@ import {
   typescriptLanguage
 } from '@codemirror/lang-javascript'
 import { autocompletion } from '@codemirror/autocomplete'
-import { Button } from 'ant-design-vue'
+import { Button, message } from 'ant-design-vue'
 import { propTypes } from '/@/utils/propTypes'
 // import 'codemirror/addon/scroll/simplescrollbars.css'
 // import 'codemirror/addon/scroll/simplescrollbars'
@@ -78,12 +79,36 @@ const init = () => {
   if (code) codeVal.value = code
 }
 
+const copy = () => {
+  navigator.clipboard
+    .writeText(codeVal.value)
+    .then(() => {
+      message.success(`复制成功`)
+    })
+    .catch((err) => console.log('复制失败！', err))
+}
+
 onMounted(() => {
   init()
 })
 </script>
 
-<style>
+<style lang="less">
+.main {
+  position: relative;
+  .copy-btn {
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    background: #282c34;
+    color: gray;
+    border-color: #282c34;
+    &:hover {
+      border-color: #fff;
+      color: #fff;
+    }
+  }
+}
 /* required! */
 .cm-editor {
   height: 100%;
