@@ -50,7 +50,8 @@ const routes: any = Object.entries(pages).map(([path, meta]: [string, Meta]) => 
     name,
     id: meta.id,
     pid: meta.pid || '-1',
-    component: meta.isLowestLevel ? () => pageComps[componentPath] : undefined,
+    // 动态导入语法必须使用Promise将组件作为value传入resolve，否则生产会找不到路由和组件
+    component: meta.isLowestLevel ? () => Promise.resolve(pageComps[componentPath]) : undefined,
     meta
   }
 })
@@ -79,7 +80,7 @@ export function go404(route: RouteLocationNormalized) {
   }
 }
 
-console.log(routes)
+console.log(routes, `${import.meta.env.BASE_URL}`)
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

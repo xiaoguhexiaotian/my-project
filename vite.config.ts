@@ -66,5 +66,9 @@ export default defineConfig({
         )}";`
       }
     }
+  },
+  build: {
+    target: 'es2015', // 设置目标 JavaScript 版本
+    cssTarget: 'chrome80'
   }
 })
