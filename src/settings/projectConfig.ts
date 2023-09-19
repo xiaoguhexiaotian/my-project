@@ -26,7 +26,7 @@ const setting: ProjectConfig = {
     // 是否固定住左侧菜单
     fixed: true,
     // 菜单折叠
-    collapsed: true,
+    collapsed: false,
     // 折叠菜单时候是否显示菜单名
     collapsedShowTitle: false,
     // 是否可拖拽

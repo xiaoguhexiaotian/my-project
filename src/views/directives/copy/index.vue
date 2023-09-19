@@ -2,6 +2,7 @@
   <div>
     <span class="copy"> {{ data }}</span>
     <Button v-copy="0">copy</Button>
+    <span>{{ comment.content + `来自于${comment.contentTmie}` }}</span>
   </div>
   <Textarea class="copy" v-model:value="data2" style="width: 180px" />
   <Button v-copy="1">copy2</Button>
@@ -12,11 +13,42 @@
 </template>
 <script setup lang="ts">
 import { Button, Textarea } from 'ant-design-vue'
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 
 const data = ref('这是一段被复制的话')
 const data2 = ref(10)
 
+const comment = reactive({
+  content: '这是一条评论',
+  contentTmie: '刚刚',
+  createTime: new Date() // 评论的创建时间
+})
+const update = () => {
+  const now = new Date()
+  // @ts-check
+  const countdown = now - comment.createTime
+  if (countdown > 0) {
+    const seconds = Math.floor(countdown / 1000)
+    const minutes = Math.floor(seconds / 60)
+    const hours = Math.floor(minutes / 60)
+    const days = Math.floor(hours / 24)
+    if (seconds > 60 && seconds < 3600) {
+      comment.contentTmie = `${minutes}分钟以前`
+    }
+    if (minutes > 60 && minutes < 1440) {
+      comment.contentTmie = `${hours}个小时以前`
+    }
+    if (hours > 24 && hours < 720) {
+      comment.contentTmie = `${hours}天以前`
+    }
+    if (days > 30) {
+      comment.contentTmie = `${hours}个月以前`
+    }
+  }
+}
+setInterval(update, 1000)
+
+console.log(comment)
 const code = ref(`/**
  * v-copy
  * 复制某个值至剪贴板

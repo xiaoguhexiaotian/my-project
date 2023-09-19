@@ -2,14 +2,14 @@
   <RouterView>
     <template #default="{ Component, route }">
       <!-- 只有非登录页才嵌套在模板中 -->
-      <keep-alive :include="getCache">
-        <Layout v-if="route.path !== '/login'">
-          <template #body>
+      <Layout v-if="route.path !== '/login'">
+        <template #body>
+          <keep-alive :include="getCache">
             <component :is="compBox(route.fullPath, Component)" :key="route.fullPath" />
-          </template>
-        </Layout>
-        <component v-else :is="Component" :key="route.fullPath" />
-      </keep-alive>
+          </keep-alive>
+        </template>
+      </Layout>
+      <component v-else :is="Component" :key="route.fullPath" />
     </template>
   </RouterView>
 </template>
@@ -70,7 +70,6 @@ const compBox = (fullPath: string, Component) => {
 const tabStore = usetabStore()
 
 const getCache = computed(() => {
-  // return ['dashboard', 'dataScenario-array-doubleTabs']
   return [...tabStore.getCacheList]
 })
 
