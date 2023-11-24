@@ -88,15 +88,18 @@ const span = {
   labelCol: { span: 4 },
   wrapperCol: { span: 20 }
 }
+const getToken = (res)=>{
+  const { result } = res
+  const token = result
+  localStorage.set('TOKEN', token)
+  userStore.setToken(token)
+  router.push({ path: '/dashboard' })
+}
 const handleLogin = async () => {
   login(formState)
     .then((res) => {
       if (res.success && res.result) {
-        const { result } = res
-        const token = result
-        localStorage.set('TOKEN', token)
-        userStore.setToken(token)
-        router.push({ path: '/dashboard' })
+        getToken(res)
       }
     })
     .catch((err) => {
@@ -105,6 +108,12 @@ const handleLogin = async () => {
 }
 const handleCodeLogin = async () => {
   const res = await codeLogin(formState)
+  if(res.success && res.result){
+    getToken(res)
+    message.success(res.message)
+  }else{
+    message.error(res.message)
+  }
   console.log('验证码登录', res)
 }
 
