@@ -12,14 +12,10 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import { ChenBasicTable } from '/@/components/ChenTable/BasicTable/index'
+import { columns } from './data.ts'
 
 const tableConfig = reactive<any>({
-  columns: [
-    { type: 'seq', width: 50 },
-    { field: 'name', title: 'name' },
-    { field: 'sex', title: 'sex' },
-    { field: 'address', title: 'Address' }
-  ],
+  columns,
   data: [
     {
       id: 10001,
