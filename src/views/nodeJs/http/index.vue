@@ -2,6 +2,31 @@
   <a-button @click="http">请求</a-button>
   <!-- 读取文件信息 -->
   <input type="file" name="file" id="fileId" @change="check" />
+
+  <a-select
+    ref="select"
+    v-model:value="value1"
+    style="width: 120px"
+    @focus="focus"
+    @change="handleChange"
+    :defaultOpen="true"
+    v-scroll
+  >
+    <a-select-option value="jack">Jack</a-select-option>
+    <a-select-option value="lucy">Lucy</a-select-option>
+    <a-select-option value="disabled" disabled>Disabled</a-select-option>
+    <a-select-option value="Yiming2he">yiminghe</a-select-option>
+    <a-select-option value="Yimi5nghe">yiminghe</a-select-option>
+    <a-select-option value="Yimi7n7ghe">yiminghe</a-select-option>
+    <a-select-option value="Yim3inghe">yiminghe</a-select-option>
+    <a-select-option value="Yimin7ghe">yiminghe</a-select-option>
+    <a-select-option value="Yim5inghe">yiminghe</a-select-option>
+    <a-select-option value="Yimi7nghe">yiminghe</a-select-option>
+    <a-select-option value="Yimi3nghe">yiminghe</a-select-option>
+    <a-select-option value="Yimi79nghe">yiminghe</a-select-option>
+    <a-select-option value="Yim98inghe">yiminghe</a-select-option>
+    <a-select-option value="Yimi98nghe">yiminghe</a-select-option>
+  </a-select>
 </template>
 
 <script lang="ts" setup>

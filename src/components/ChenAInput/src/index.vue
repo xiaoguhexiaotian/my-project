@@ -48,7 +48,9 @@ const props = defineProps({
   /** 宽度 */
   width: propTypes.oneOfType([propTypes.number, propTypes.string]).def('180'),
   /** 类型 */
-  presetType: propTypes.string
+  presetType: propTypes.string,
+  /** 大小写提示 */
+  isCapsTip: propTypes.bool.def(false),
 })
 // emit事件
 
@@ -62,6 +64,7 @@ const modelValue = ref<string | number>('')
 /** 输入 */
 const input = (e: Event) => {
   const targetValue = (e.target as HTMLInputElement).value
+  console.log(navigator,22222222222)
   emit('update:modelValue', modelValue.value)
   emit('input', targetValue)
 }

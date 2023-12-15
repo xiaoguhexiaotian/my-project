@@ -13,8 +13,12 @@
         <h3>数字</h3>
         <ChenAInput v-model="inputValue" presetType="number" @change="change" />
       </div>
-      <div class="text-24px box mb-30px">
+      <div class="text-24px box">
         <h3>默认</h3>
+        <ChenAInput v-model="inputValue" @input="input" />
+      </div>
+      <div class="text-24px box mb-30px">
+        <h3>是否开启大小写提示</h3>
         <ChenAInput v-model="inputValue" @input="input" />
       </div>
       <Codemirror :code="code" :isShowBtn="false" height="600px" width="95%" />
@@ -34,6 +38,29 @@ const change = (value: string | number) => {
 }
 const search = (value: string | number) => {
   console.log('搜索：', value, inputValue.value)
+}
+function isCaseSensitive() {
+  var input = document.createElement("input");
+  input.setAttribute("type", "text");
+  document.body.appendChild(input);
+  input.select();
+  try {
+    var successful = document.execCommand("copy");
+    var msg = successful ? "successful" : "unsuccessful";
+    console.log("Copy command was " + msg);
+    document.body.removeChild(input);
+    return successful;
+  } catch (err) {
+    console.log("Oops, unable to copy");
+    document.body.removeChild(input);
+    return false;
+  }
+}
+
+if (isCaseSensitive()) {
+  console.log("已开启大小写模式");
+} else {
+  console.log("未开启大小写模式");
 }
 
 const code = ref(`<template>
