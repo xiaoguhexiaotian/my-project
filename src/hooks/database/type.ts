@@ -1,4 +1,3 @@
-
 export type DBParam = {
   databaseName: string
   tableName: string
@@ -10,5 +9,3 @@ export type DBParam = {
 export type DatabaseEvent = Event & {
   target: { result: IDBDatabase }
 }
-
-

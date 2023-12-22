@@ -5,7 +5,7 @@ import { cloneDeep } from 'lodash'
 export const useIndexedDB = (dbOption: DBParam) => {
   const { databaseName, tableName, key, index, indexOptions } = dbOption
   const db = ref<IDBDatabase>()
-  const result = ref({ code: 200}) // 返回参数
+  const result = ref({ code: 200 }) // 返回参数
   const request = indexedDB.open(databaseName)
   request.onerror = function () {
     console.error('打开数据库失败')
@@ -26,16 +26,16 @@ export const useIndexedDB = (dbOption: DBParam) => {
     return objectStore
   }
 
-  const success = (event:any,message:string)=>{
+  const success = (event: any, message: string) => {
     result.value = Object.assign(result.value, {
-      success: event.type ==='success',
+      success: event.type === 'success',
       code: 200,
-      message,  
+      message,
       result: event.target.result
     })
   }
-  
-  const error = (event:any,message:string)=>{
+
+  const error = (event: any, message: string) => {
     result.value = Object.assign(result.value, {
       success: false,
       code: 500,
@@ -45,62 +45,66 @@ export const useIndexedDB = (dbOption: DBParam) => {
   }
 
   const addData = (data, actionCode: IDBTransactionMode = 'readwrite') => {
-    const objectStore = createObjectStore(actionCode)
-    const request = objectStore.add(data) // 回调
-    // 监听请求结果
-    request.onsuccess = function (event: any) {
-      success(event,'添加成功')
-    }
-    request.onerror = function (event:any) {
-      error(event,'添加失败')
-    }
     return new Promise((resolve) => {
-      resolve(cloneDeep(result.value))
+      const objectStore = createObjectStore(actionCode)
+      const request = objectStore.add(data) // 回调
+      // 监听请求结果
+      request.onsuccess = function (event: any) {
+        success(event, '添加成功')
+        resolve(cloneDeep(result.value))
+      }
+      request.onerror = function (event: any) {
+        error(event, '添加失败')
+        resolve(cloneDeep(result.value))
+      }
     })
   }
 
   const deleteData = (key: string, actionCode: IDBTransactionMode = 'readwrite') => {
-    const objectStore = createObjectStore(actionCode)
-    const request = objectStore.delete(key)
-    // 监听请求结果
-    request.onsuccess = function (event: any) {
-      success(event,'删除成功')
-    }
-    request.onerror = function (event: any) {
-      error(event,'删除失败')
-    }
     return new Promise((resolve) => {
-      resolve(cloneDeep(result.value))
+      const objectStore = createObjectStore(actionCode)
+      const request = objectStore.delete(key)
+      // 监听请求结果
+      request.onsuccess = function (event: any) {
+        success(event, '删除成功')
+        resolve(cloneDeep(result.value))
+      }
+      request.onerror = function (event: any) {
+        error(event, '删除失败')
+        resolve(cloneDeep(result.value))
+      }
     })
   }
 
   const queryData = (key: string, keyPath: string, actionCode: IDBTransactionMode = 'readonly') => {
-    const objectStore = createObjectStore(actionCode)
-    const index = objectStore.index(keyPath)
-    index.get(key).onsuccess = (event: any) => {
-      success(event,'成功')
-    }
-    // 查不到不会进onerror
-    index.get(key).onerror = (event:any) => {
-      error(event, '失败')
-    }
     return new Promise((resolve) => {
-      resolve(cloneDeep(result.value))
+      const objectStore = createObjectStore(actionCode)
+      const index = objectStore.index(keyPath)
+      index.get(key).onsuccess = (event: any) => {
+        success(event, '成功')
+        resolve(cloneDeep(result.value))
+      }
+      // 查不到不会进onerror
+      index.get(key).onerror = (event: any) => {
+        error(event, '失败')
+        resolve(cloneDeep(result.value))
+      }
     })
   }
 
   const editData = (data, actionCode: IDBTransactionMode = 'readwrite') => {
-    const objectStore = createObjectStore(actionCode)
-    const request = objectStore.put(data) // 回调
-    // 监听请求结果
-    request.onsuccess = function (event: any) {
-      success(event,'修改成功')
-    }
-    request.onerror = function (event:any) {
-      error(event, '修改失败')
-    }
     return new Promise((resolve) => {
-      resolve(cloneDeep(result.value))
+      const objectStore = createObjectStore(actionCode)
+      const request = objectStore.put(data) // 回调
+      // 监听请求结果
+      request.onsuccess = function (event: any) {
+        success(event, '修改成功')
+        resolve(cloneDeep(result.value))
+      }
+      request.onerror = function (event: any) {
+        error(event, '修改失败')
+        resolve(cloneDeep(result.value))
+      }
     })
   }
 
