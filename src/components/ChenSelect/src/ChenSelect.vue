@@ -1,5 +1,9 @@
 <template>
-  <Select v-bind="$attrs" :style="{ width }" @change="change" :options="options" />
+  <Select v-bind="$attrs" :style="{ width }" @change="change" :options="options">
+    <template v-if="isShowDropdownRender" #dropdownRender>
+      <span :class="dropdownRenderIcon" />
+    </template>
+  </Select>
 </template>
 
 <script lang="ts" setup>

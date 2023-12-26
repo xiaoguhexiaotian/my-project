@@ -1,7 +1,7 @@
 <template>
   <BodyLayout>
     <template #content>
-      <ChenSelect v-model:value="id" :options="data" width="300px" mode="test" />
+      <ChenSelect v-model:value="id" :options="data" width="300px" isShowDropdownRender />
     </template>
   </BodyLayout>
 </template>

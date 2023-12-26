@@ -1,4 +1,4 @@
-import { array, string } from 'vue-types'
+import { array, string, bool } from 'vue-types'
 import { ExtractPropTypes, PropType } from 'vue'
 
 export const ComponentProps = () => ({
@@ -9,7 +9,11 @@ export const ComponentProps = () => ({
   /** 源数据 */
   options: array<{ label: string; value: string; [key: string]: any }>().def([]),
   /** 选择方式 */
-  mode: string<'multiple' | 'tags' | 'combobox'>().def('combobox')
+  mode: string<'multiple' | 'tags' | 'combobox'>().def('combobox'),
+  /** 下拉框额外操作 */
+  isShowDropdownRender: bool().def(false),
+  /** 下拉框额外操作icon */
+  dropdownRenderIcon: string().def('chen-bawangcan')
 })
 
 export const SelectEmits = ['change', 'update:value']
