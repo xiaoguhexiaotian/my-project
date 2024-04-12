@@ -1,5 +1,5 @@
 import { Component } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 import type { RouteLocationNormalized } from 'vue-router'
 import { toArrayTree } from 'xe-utils'
 import ifarme from '/@/router/module/iframe'
@@ -13,7 +13,7 @@ export interface Meta {
   hideMenu?: boolean
   isLowestLevel?: boolean
   icon: string
-  sort?: number
+  sort: number
 }
 export interface IRoute {
   path: string
@@ -30,14 +30,12 @@ const pages = import.meta.glob('../views/**/page.ts', {
   eager: true,
   import: 'default'
 })
+// 2024.4.12优化为懒加载模式，这样就不会初始化去生成菜单的时候读取所有的index.vue文件了，性能拉满
 // 页面组件信息
-const pageComps = import.meta.glob('../views/**/index.vue', {
-  eager: true,
-  import: 'default'
-})
+const pageComps = import.meta.glob('../views/**/index.vue')
 
 // 转换为路由信息
-const routes: any = Object.entries(pages).map(([path, meta]: [string, Meta]) => {
+const routes: IRoute[] = Object.entries(pages).map(([path, meta]: [string, Meta]) => {
   // 暂存页面路径
   const pageTsPath = path
   path = path.replace('../views', '').replace('/page.ts', '')
@@ -50,12 +48,12 @@ const routes: any = Object.entries(pages).map(([path, meta]: [string, Meta]) => 
     name,
     id: meta.id,
     pid: meta.pid || '-1',
-    // 动态导入语法必须使用Promise将组件作为value传入resolve，否则生产会找不到路由和组件
-    component: meta.isLowestLevel ? () => Promise.resolve(pageComps[componentPath]) : undefined,
+    // 动态导入 pageComps中的每一个key的值都是一个异步函数 执行后获取到对应的组件 打包构建时也会对这种语法进行解析 拆分为不同的chunk
+    component: meta.isLowestLevel ? () => pageComps[componentPath]() : undefined,
     meta
   }
 })
-routes.push(...ifarme)
+routes.push(...(ifarme as any))
 // 通过每个page中的id，pid转化为树形菜单结构
 export const menuData: IRoute[] = toArrayTree(routes, {
   parentKey: 'pid',
@@ -85,7 +83,7 @@ console.log(routes, `${import.meta.env.BASE_URL}`)
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   // 过滤掉父级路由
-  routes: routes.filter((i) => i.component)
+  routes: routes.filter((i) => i.component) as unknown as RouteRecordRaw[]
 })
 
 export default router

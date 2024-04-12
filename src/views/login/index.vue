@@ -69,6 +69,7 @@ import { CountButton } from '/@/components/ChenCountDown/index'
 import { createLocalStorage } from '/@/utils/cache'
 import { useUserStore } from '/@/stores/user'
 import router from '/@/router'
+import { message } from 'ant-design-vue'
 interface FormState {
   username: string
   password: string
@@ -88,7 +89,8 @@ const span = {
   labelCol: { span: 4 },
   wrapperCol: { span: 20 }
 }
-const getToken = (res)=>{
+localStorage.set('TOKEN', 'hgfhuerb')
+const getToken = (res) => {
   const { result } = res
   const token = result
   localStorage.set('TOKEN', token)
@@ -108,10 +110,10 @@ const handleLogin = async () => {
 }
 const handleCodeLogin = async () => {
   const res = await codeLogin(formState)
-  if(res.success && res.result){
+  if (res.success && res.result) {
     getToken(res)
     message.success(res.message)
-  }else{
+  } else {
     message.error(res.message)
   }
   console.log('验证码登录', res)
