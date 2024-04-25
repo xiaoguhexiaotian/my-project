@@ -37,7 +37,9 @@
     "vuex": "^4.0.0",
     "vxe-table": "^4.4.1",
     "xe-utils": "^3.5.11",
-    "yorkie": "^2.0.0"
+    "yorkie": "^2.0.0",
+    "moment": "^2.29.1",
+    "socket.io-client": "^4.3.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",

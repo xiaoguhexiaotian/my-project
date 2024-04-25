@@ -33,8 +33,8 @@ import { propTypes } from '/@/utils/propTypes'
 const props = defineProps({
   contenMinHeight: propTypes.string.def('222px'),
   paymentType: propTypes.number.def(0),
-  extraHeight: propTypes.number.def(0),
-  customFn: propTypes.func.isRequired
+  extraHeight: propTypes.number.def(0)
+  // customFn: propTypes.func.isRequired
 })
 
 const BODY_HEADER_HEIGHT = 65
@@ -162,7 +162,7 @@ const getTaskId = async (
  */
 const getList = async (isClickSearch = false, otherReportCode?: string) => {}
 
-getTableData(false, true, true, true)
+// getTableData(false, true, true, true)
 const sizeChange = () => {
   searchData.page.current++
   // searchData.page.size = 10
