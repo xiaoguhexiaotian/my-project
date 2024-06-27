@@ -3,6 +3,7 @@ import '/@/design/index.less'
 import 'virtual:windi.css'
 import 'vxe-table/lib/style.css'
 import 'ant-design-vue/dist/antd.css'
+import '/@/icon/iconfont.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

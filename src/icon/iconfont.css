@@ -1,0 +1,120 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3611312 */
+  src: url('iconfont.woff2?t=1719474239921') format('woff2'),
+       url('iconfont.woff?t=1719474239921') format('woff'),
+       url('iconfont.ttf?t=1719474239921') format('truetype'),
+       url('iconfont.svg?t=1719474239921#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.chen-hongjiu:before {
+  content: "\10121";
+}
+
+.chen-cha:before {
+  content: "\10122";
+}
+
+.chen-bawangcan:before {
+  content: "\10123";
+}
+
+.chen-naika:before {
+  content: "\10124";
+}
+
+.chen-kafei2:before {
+  content: "\10125";
+}
+
+.chen-mianbao:before {
+  content: "\10126";
+}
+
+.chen-dingdan:before {
+  content: "\10127";
+}
+
+.chen-jiaxinjuan:before {
+  content: "\10128";
+}
+
+.chen-hebaodan:before {
+  content: "\10129";
+}
+
+.chen-niujiaomianbao:before {
+  content: "\1012a";
+}
+
+.chen-shouzhuabing:before {
+  content: "\1012b";
+}
+
+.chen-tusi:before {
+  content: "\1012c";
+}
+
+.chen-xiannai:before {
+  content: "\1012d";
+}
+
+.chen-naicha:before {
+  content: "\1012e";
+}
+
+.chen-shutiao:before {
+  content: "\1012f";
+}
+
+.chen-xiankaomianbao:before {
+  content: "\10130";
+}
+
+.chen-kafei:before {
+  content: "\10131";
+}
+
+.chen-xiawucha:before {
+  content: "\10132";
+}
+
+.chen-zhushi:before {
+  content: "\10133";
+}
+
+.chen-shousimianbao:before {
+  content: "\10134";
+}
+
+.chen-sanmingzhi:before {
+  content: "\10135";
+}
+
+.chen-shouye:before {
+  content: "\10136";
+}
+
+.chen-xuegao:before {
+  content: "\10137";
+}
+
+.chen-yinliao:before {
+  content: "\10138";
+}
+
+.chen-zaocan:before {
+  content: "\10139";
+}
+
+.chen-zhajitui:before {
+  content: "\1013a";
+}
+
